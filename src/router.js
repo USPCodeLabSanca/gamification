@@ -4,6 +4,7 @@ import Router from 'vue-router'
 // Page content
 import Page1 from '@/components/Page1'
 import Home from '@/components/Home'
+import Login from '@/components/Login'
 
 // Fallback page
 import PageNotFound from '@/components/PageNotFound'
@@ -21,6 +22,11 @@ export default new Router({
       path: '/page-1',
       name: 'Page 1',
       component: Page1
+    },
+    {
+      path: '/login',
+      name: 'Login Page',
+      component: Login
     },
     {
       path: '**',

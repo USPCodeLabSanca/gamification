@@ -44,6 +44,10 @@ export default {
       {
         name: 'Bad Link',
         to: '/random-bad-url'
+      },
+      {
+        name: 'Login Page',
+        to: '/login'
       }
     ]
   })
