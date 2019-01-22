@@ -22,13 +22,11 @@
       appId="255459355343445"
       @login="onLogin"
       @logout="onLogout"
-      @sdk-loaded="sdkLoaded">
+      @sdk-loaded="sdkLoaded"
+      style='align: center; margin-top: 15px'>
     </facebook-login>
-    <a id="signin-button" v-on:click="signIn">
-      <i class="fa fa-google-plus-official fa-3x"></i>
-      Sign in with Google
-    </a>
-     <router-link :to=register>Cadastre-se</router-link>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style='align: center; margin-top: 15px'> </div>
+    <router-link :to=register>Cadastre-se</router-link>
   </div>
 </template>
 
@@ -39,7 +37,7 @@ h2 {
 }
 
 button {
-    float: right;
+  float: right;
 }
 
 </style>
@@ -48,13 +46,18 @@ button {
 import facebookLogin from 'facebook-login-vuejs';
 
 export default {
+  mounted() {
+    gapi.signin2.render('google-signin-button', {
+      onsuccess: this.onSignIn
+    })
+  },
     data() {
         return {
             credentials: {
                 username: '',
                 password: ''
             },
-            register: '/register'
+            register: '/register',
         }
     },
     methods: {
@@ -76,12 +79,26 @@ export default {
           this.FB = payload.FB
           if (this.isConnected) this.getUserData()
         },
-        onLogin() {
+        onLogin() { //sempre executa mesmo antes de clicar e entra na conta que ja fez login antes ???
           this.isConnected = true
           this.getUserData()
         },
         onLogout() {
           this.isConnected = false;
+        },
+        onSignIn(googleUser) { //nao ta executando
+          // Useful data for your client-side scripts:
+          var profile = googleUser.getBasicProfile();
+          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+          console.log('Full Name: ' + profile.getName());
+          console.log('Given Name: ' + profile.getGivenName());
+          console.log('Family Name: ' + profile.getFamilyName());
+          console.log("Image URL: " + profile.getImageUrl());
+          console.log("Email: " + profile.getEmail());
+
+          // The ID token you need to pass to your backend:
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log("ID Token: " + id_token);
         }
       },
     components: {
