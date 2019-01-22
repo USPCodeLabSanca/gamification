@@ -1,24 +1,43 @@
 <template>
   <div>
-    <ul>
-      <li v-for="(link, index) in links" :key="index">
-        <router-link :to="link.to">{{ link.name }}</router-link>
-      </li>
-    </ul>
+    <div class="app-toolbar">
+      <ul>
+        <li v-for="(link, index) in links" :key="index">
+          <router-link :to="link.to">{{ link.name }}</router-link>
+        </li>
+      </ul>
+    </div>
     <main>
       <router-view/>
     </main>
   </div>
 </template>
 
-<style scoped>
+<style>
+  .vsc-initialized {
+    margin: 0 0;
+  }
+
+  .app-toolbar {
+    position: fixed;
+    z-index: 9001;
+    top: 0;
+    background-color: gray;
+    height: 50px;
+    padding-left: 15px;
+    width: 100vw;
+    backface-visibility: hidden;
+  }
   ul {
     list-style: none;
     display: flex;
-    padding: 0;
+    margin: 0 0;
+    padding: 0 0;
+    height: 100%;
+    align-items: center;
   }
   li {
-    padding: 5px 15px 5px 0;
+    padding: 0 15px 0 0;
   }
   li a {
     text-decoration: none;
