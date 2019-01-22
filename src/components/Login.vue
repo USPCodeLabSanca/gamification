@@ -17,7 +17,7 @@
         v-model="credentials.password"
       >
     </div>
-    <button class="btn btn-primary login" @click="submit()">Entrar</button>
+    <button class="btn btn-primary" @click="submit()">Entrar</button>
     <facebook-login class="button"
       appId="255459355343445"
       @login="onLogin"
@@ -28,13 +28,14 @@
       <i class="fa fa-google-plus-official fa-3x"></i>
       Sign in with Google
     </a>
-    <button>Cadastre-se</button>
+     <router-link :to=register>Cadastre-se</router-link>
   </div>
 </template>
 
 <style scoped>
 h2 {
-  text-align: center;  
+  text-align: center;
+  margin-top: 50px;
 }
 
 button {
@@ -52,7 +53,8 @@ export default {
             credentials: {
                 username: '',
                 password: ''
-            }
+            },
+            register: '/register'
         }
     },
     methods: {
