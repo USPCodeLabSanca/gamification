@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "facebook-login-vuejs": "^2.1.3",
+    "quasar-framework": "^0.17.19",
     "vue": "^2.5.21",
     "vue-google-login": "^1.0.3",
     "vue-router": "^3.0.2",

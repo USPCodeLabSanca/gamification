@@ -24,6 +24,11 @@
       @logout="onLogout"
       @sdk-loaded="sdkLoaded">
     </facebook-login>
+    <a id="signin-button" v-on:click="signIn">
+      <i class="fa fa-google-plus-official fa-3x"></i>
+      Sign in with Google
+    </a>
+    <button>Cadastre-se</button>
   </div>
 </template>
 
