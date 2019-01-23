@@ -21,6 +21,15 @@ module.exports = (env, argv) => ({
   module: {
     rules: [
       {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
