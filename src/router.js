@@ -1,43 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
-// Page content
-import Page1 from '@/components/Page1'
-import Home from '@/components/Home'
-import Login from '@/components/Login'
-import Register from '@/components/Register'
-
-// Fallback page
-import PageNotFound from '@/components/PageNotFound'
+import Home from './views/Home.vue'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
-      path: '/page-1',
-      name: 'Page 1',
-      component: Page1
-    },
-    {
-      path: '/login',
-      name: 'Login Page',
-      component: Login
-    },
-    {
-      path: '/register',
-      name: 'Register page',
-      component: Register
-    },
-    {
-      path: '**',
-      name: 'PageNotFound',
-      component: PageNotFound
+      path: '/about',
+      name: 'about',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
   ]
 })
