@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <h1>Page Not Found</h1>
   </div>
 </template>
 
 <style scoped>
 h1 {
-  color: blue
+  color: red
 }
 </style>
 
