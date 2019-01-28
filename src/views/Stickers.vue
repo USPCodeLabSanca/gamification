@@ -20,14 +20,15 @@ h1 {
 .figurinhas {
   display: flex;
   position: relative;
+  width: 100vw;
 }
 .figurinhas div {
   height:100px;
-  width:100px;
+  width:10vw;
 }
 .figurinhas .pic {
   background-image: url("https://jooinn.com/images/picture-5.jpg");
-  width: 1000px;
+  width: 100vw;
   height: 1000px;
   position: absolute;
   overflow: show;

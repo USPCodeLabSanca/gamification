@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import DefaultLayout from './layouts/Default.vue'
 import Home from './views/Home.vue'
-import Page1 from '@/views/Page1'
+import Stickers from '@/views/Stickers'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import PageNotFound from '@/views/PageNotFound'
@@ -21,9 +21,9 @@ export default new Router({
           component: Home
         },
         {
-          path: '/page-1',
-          name: 'Page 1',
-          component: Page1
+          path: '/stickers',
+          name: 'Stickers',
+          component: Stickers
         },
         {
           path: '/login',

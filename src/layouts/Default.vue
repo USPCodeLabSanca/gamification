@@ -10,29 +10,45 @@
               icon="menu"
             />
           </li>
-          <li v-for="(link, index) in links" :key="index">
-            <router-link :to="link.to">{{ link.name }}</router-link>
+          <li v-if="isUserLogged">
+            <router-link to=/stickers>
+              <i class="material-icons invertStyle navbar">style</i>
+              {{cards.user}}/{{cards.total}} {{windowWidth > 350 ? 'Figurinhas' : ''}}
+            </router-link>
+          </li>
+          <li v-if="isUserLogged">
+            <router-link to=/points>
+              <i class="material-icons navbar">stars</i>
+              {{points}} Pontos
+              <q-progress :percentage="points" />
+            </router-link>
+          </li>
+          <li v-if="!isUserLogged">
+            <img src="@/assets/logo.png" class="logo" />
           </li>
         </ul>
       </div>
       <q-layout-drawer side="left" v-model="showLeft" :content-style="{'background-color': '#C0C0C0'}">
-        <q-list no-border link inset-separator>
-          <q-list-header>Essential Links</q-list-header>
-          <q-item to="/docs">
-            <q-item-side icon="school" />
-            <q-item-main label="Docs" sublabel="quasar-framework.org" />
+        <q-list no-border link>
+          <q-item to="/">
+            <q-item-side icon="home" />
+            <q-item-main label="Home" />
           </q-item>
-          <q-item to="/forum">
-            <q-item-side icon="record_voice_over" />
-            <q-item-main label="Forum" sublabel="forum.quasar-framework.org" />
+          <q-item v-if="isUserLogged" to="/stickers">
+            <q-item-side icon="style" class="invertStyle" />
+            <q-item-main label="Figurinhas" />
           </q-item>
-          <q-item to="/chat">
-            <q-item-side icon="chat" />
-            <q-item-main label="Discord Chat Channel" sublabel="https://discord.gg/5TDhbDg" />
+          <q-item v-if="isUserLogged" to="/points">
+            <q-item-side icon="stars" />
+            <q-item-main label="Pontos" />
           </q-item>
-          <q-item to="/twitter">
-            <q-item-side icon="rss feed" />
-            <q-item-main label="Twitter" sublabel="@quasarframework" />
+          <q-item v-if="!isUserLogged" to="/login">
+            <q-item-side icon="person" />
+            <q-item-main label="Login" />
+          </q-item>
+          <q-item to="**">
+            <q-item-side icon="report_problem" />
+            <q-item-main label="Page Not Found" />
           </q-item>
         </q-list>
       </q-layout-drawer>
@@ -44,15 +60,13 @@
 </template>
 
 <style>
-  .vsc-initialized {
-    margin: 0 0;
-  }
-
   .q-layout-drawer {
-    position: fixed;
-    top: 50px;
+    position: fixed !important;
+    top: 50px !important;
   }
-
+  .q-list {
+    padding: 0 0 !important;
+  }
   .app-toolbar {
     position: fixed;
     z-index: 9001;
@@ -61,7 +75,6 @@
     height: 50px;
     padding-left: 15px;
     width: 100vw;
-    backface-visibility: hidden;
   }
   ul {
     list-style: none;
@@ -81,30 +94,44 @@
   li a:hover {
     color: #404040;
   }
+  li .material-icons.navbar {
+    margin: 0 2px 3px 0;
+    font-size: 22px;
+  }
+  .invertStyle {
+    transform: rotate(180deg) scaleX(-1);
+  }
+  .logo {
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: calc(50% - 34px)
+  }
 </style>
 
 <script>
-export default {
-  data: () => ({
-    showLeft: false,
-    links: [
-      {
-        name: 'Home',
-        to: '/'
-      },
-      {
-        name: 'Page 1',
-        to: '/page-1'
-      },
-      {
-        name: 'Bad Link',
-        to: '/random-bad-url'
-      },
-      {
-        name: 'Login Page',
-        to: '/login'
+  import { mapGetters } from 'vuex';
+  export default {
+    data: () => ({
+      showLeft: false,
+      windowWidth: 0
+    }),
+    computed: mapGetters([
+      'isUserLogged',
+      'cards',
+      'points'
+    ]),
+    created() {
+      window.addEventListener('resize', this.handleResize)
+      this.handleResize();
+    },
+    destroyed() {
+      window.removeEventListener('resize', this.handleResize)
+    },
+    methods: {
+      handleResize() {
+        this.windowWidth = window.innerWidth;
       }
-    ]
-  })
-}
+    }
+  };
 </script>

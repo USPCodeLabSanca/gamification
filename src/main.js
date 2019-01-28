@@ -24,6 +24,7 @@ import {
   QItem,
   QItemSide,
   QItemMain,
+  QProgress
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -43,6 +44,7 @@ Vue.use(Quasar, {
     QItem,
     QItemSide,
     QItemMain,
+    QProgress
   },
   directives: {
   },
