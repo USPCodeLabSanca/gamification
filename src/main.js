@@ -20,11 +20,12 @@ import {
   QToolbarTitle,
   QList,
   QListHeader,
+  QInput,
   QItemSeparator,
   QItem,
   QItemSide,
   QItemMain,
-  QProgress
+  QProgress,
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -40,6 +41,7 @@ Vue.use(Quasar, {
     QToolbarTitle,
     QList,
     QListHeader,
+    QInput,
     QItemSeparator,
     QItem,
     QItemSide,

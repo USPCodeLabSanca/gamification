@@ -1,60 +1,19 @@
 <template>
-  <div class="col-xs-4 col-md-4">
+  <q-page padding class="docs-input justify-center">
     <h2>Cadastro</h2>
     <form
     id="register-form"
     @submit="checkForm">
 
-    <div class="form-group">
-        <label for="name">Nome</label>
-        <input
-            type="text"
-            class="form-control"
-            v-model="data.name"
-            :disabled='disableform'
-        >
-    </div>
-
-    <div class="form-group">
-        <label for="email">E-mail</label>
-        <input
-            type="email"
-            class="form-control"
-            v-model="data.email"
-            :disabled='disableform'
-        >
-    </div>
-
-    <div class="form-group">
-        <label for="nusp">Número USP</label>
-        <input
-            type="number"
-            class="form-control"
-            v-model="data.nusp"
-        >
-    </div>
-
-    <div class="form-group" v-if='!disableform'>
-        <label for="pass">Senha</label>
-        <input
-            type="password"
-            class="form-control"
-            v-model="data.password"
-        >
-    </div>
-    
-    <div class="form-group" v-if='!disableform'>
-        <label for="confirm-pass">Confirmar senha</label>
-        <input
-            type="password"
-            class="form-control"
-        >
-    </div>
-
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <q-input v-model="data.name" float-label="Nome" :disable="disableform"/>
+    <q-input v-model="data.email" type="email" float-label="E-mail" :disable="disableform"/>
+    <q-input v-model="data.nusp" type="number" float-label="Número USP"/>
+    <q-input v-model="data.password" type="password" float-label="Senha" v-if="!disableform"/>
+    <q-input type="password" float-label="Confirmar senha" v-if="!disableform"/>
+    <q-btn type="submit" color="primary" label="Cadastrar"/>
 
     </form>
-  </div>
+  </q-page>
 </template>
 
 <style scoped>
@@ -65,6 +24,7 @@ h2 {
 
 button {
     float: right;
+    margin-top: 5%; 
 }
 </style>
 
