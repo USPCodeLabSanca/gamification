@@ -1,33 +1,35 @@
 <template>
    <q-layout>
     <div>
-      <div class="app-toolbar">
-        <ul>
-          <li>
-            <q-btn
-              flat round dense
-              @click="showLeft = !showLeft"
-              icon="menu"
-            />
-          </li>
-          <li v-if="isUserLogged">
-            <router-link to=/stickers>
-              <i class="material-icons invertStyle navbar">style</i>
-              {{cards.user}}/{{cards.total}} {{windowWidth > 350 ? 'Figurinhas' : ''}}
-            </router-link>
-          </li>
-          <li v-if="isUserLogged">
-            <router-link to=/points>
-              <i class="material-icons navbar">stars</i>
-              {{points}} Pontos
-              <q-progress :percentage="points" />
-            </router-link>
-          </li>
-          <li v-if="!isUserLogged">
-            <img src="@/assets/logo.png" class="logo" />
-          </li>
-        </ul>
-      </div>
+      <q-layout-header>
+        <div class="app-toolbar">
+          <ul>
+            <li>
+              <q-btn
+                flat round dense
+                @click="showLeft = !showLeft"
+                icon="menu"
+              />
+            </li>
+            <li v-if="isUserLogged">
+              <router-link to=/stickers>
+                <i class="material-icons invertStyle navbar">style</i>
+                {{cards.user}}/{{cards.total}} {{windowWidth > 350 ? 'Figurinhas' : ''}}
+              </router-link>
+            </li>
+            <li v-if="isUserLogged">
+              <router-link to=/points>
+                <i class="material-icons navbar">stars</i>
+                {{points}} Pontos
+                <q-progress :percentage="points" />
+              </router-link>
+            </li>
+            <li v-if="!isUserLogged">
+              <img src="@/assets/logo.png" class="logo" />
+            </li>
+          </ul>
+        </div>
+      </q-layout-header>
       <q-layout-drawer side="left" v-model="showLeft" :content-style="{'background-color': '#C0C0C0'}">
         <q-list no-border link>
           <q-item to="/">
@@ -60,6 +62,9 @@
 </template>
 
 <style>
+  body, #q-app {
+    height: 100vh;
+  }
   .q-layout-drawer {
     position: fixed !important;
     top: 50px !important;

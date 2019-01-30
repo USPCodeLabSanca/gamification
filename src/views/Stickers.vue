@@ -1,70 +1,25 @@
 <template>
-  <div>
-    <h1>Page 1</h1>
-    <div class='figurinhas'>
-      <div class='pic' />
-      <div v-for="i in height">
-        <div v-for="j in width">
-          <div v-if="show[i-1][j-1]" class='show' v-on:click="changeStatus(i-1, j-1)"></div>
-          <div v-else class='hide' v-on:click="changeStatus(i-1, j-1)"></div>
-        </div>
-      </div>
-    </div>
+  <div class="stickers">
+    <app-sticker-board />
   </div>
 </template>
 
 <style scoped>
-h1 {
-  color: green
-}
-.figurinhas {
-  display: flex;
-  position: relative;
-  width: 100vw;
-}
-.figurinhas div {
-  height:100px;
-  width:10vw;
-}
-.figurinhas .pic {
-  background-image: url("https://jooinn.com/images/picture-5.jpg");
-  width: 100vw;
-  height: 1000px;
-  position: absolute;
-  overflow: show;
-  z-index: -10;
-}
-.figurinhas div .show {
-    background-color: blue;
-    opacity: 100%;
-    border: 1px solid red;
-}
-.figurinhas div .hide {
-    opacity: 0%;
-}
+  .stickers {
+    height: calc(100vh - 50px);
+    width: 100%;
+    margin-top: 49px;
+  }
 </style>
 
 <script>
-export default {
-  data: () => ({
-    height: 10,
-    width: 10,
-    show: [[true, true, false, true, true, true, true, true, true, true],
-      [true, true, true, true, true, true, false, true, true, true],
-      [true, true, true, true, true, true, true, true, true, true],
-      [true, true, true, true, true, true, true, true, true, true],
-      [true, true, true, true, true, true, true, true, true, true],
-      [true, true, true, true, true, true, true, true, true, true],
-      [true, true, true, true, true, true, true, true, true, true],
-      [true, true, true, true, true, true, true, true, true, true],
-      [true, true, true, true, true, true, true, true, true, true],
-      [true, true, true, true, true, true, true, true, true, true]],
-  }),
-  methods: {
-    changeStatus: function(i,j) {
-      this.show[i][j] = !this.show[i][j];
-      this.show = [...this.show];
+  import StickerBoard from '../components/StickerBoard';
+  export default {
+    data: () => ({
+      height: 10,
+    }),
+    components: {
+      'app-sticker-board': StickerBoard
     }
   }
-}
 </script>
