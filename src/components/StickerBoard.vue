@@ -30,9 +30,11 @@
     background-color: rebeccapurple;
   }
   .side.horizontal {
-    width: calc((100vw - ((100vh - 100px) / 1.4142))/2) 
+    height: calc(100vh - 155px);
+    width: calc((100vw - ((100vh - 155px) / 1.4142))/2) 
   }
   .side.vertical {
+    height: calc(80vw * 1.4142);
     width: 10vw;
   }
   .sticker-board__center__middle.vertical {
@@ -41,8 +43,8 @@
     background-color: aqua;
   }
   .sticker-board__center__middle.horizontal {
-    height: calc(100vh - 100px);
-    width: calc((100vh - 100px) / 1.4142);
+    height: calc(100vh - 155px);
+    width: calc((100vh - 155px) / 1.4142);
     background-color: aqua;
   }
   .sticker-board__center {
@@ -55,7 +57,7 @@
     width: 80vw;
   }
   .sticker-board__center.horizontal {
-    width: calc((100vh - 100px) / 1.4142);
+    width: calc((100vh - 155px) / 1.4142);
   }
   .sticker-board__center__top .sticker-board__center__bottom {
     display: flex;
@@ -86,7 +88,7 @@
       handleResize() {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        this.screenOrientation = height - 100 > (1.4142 * (width - 100)) ? 'vertical' : 'horizontal';
+        this.screenOrientation = height - 155 > (1.4142 * (0.8 * width)) ? 'vertical' : 'horizontal';
       }
     }
   };
