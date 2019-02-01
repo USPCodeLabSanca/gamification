@@ -1,82 +1,51 @@
 <template>
-  <div class="sticker-board">
-    <div class="side left" :class="screenOrientation" /> 
+  <div class="sticker-board" :class="screenOrientation">
     <div class="sticker-board__center" :class="screenOrientation">
-      <div class="sticker-board__center__top">
-        <p>Minhas Figurinhas</p>
-      </div>
-      <div class="sticker-board__center__middle" :class="screenOrientation">
-        whatever
-      </div>
-      <div class="sticker-board__center__bottom">
-        <p>5/16</p>
+      <div v-for="row in 4" :key="row" class="row">
+        <app-sticker v-for="col in 4" :key="col" :row="row" :col="col" :puzzle="puzzle"/>
       </div>
     </div>
-    <div class="side right" :class="screenOrientation" />
   </div>
 </template>
 
 <style scoped>
   .sticker-board {
-    background-color: salmon;
-    height: 100%;
-    width: 100%;
+    width: 100vw;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
   }
-  .side {
-    height: 100%;
-    background-color: rebeccapurple;
+  .sticker-board.horizontal {
+    height: calc(88vh - 50px);
   }
-  .side.horizontal {
-    height: calc(100vh - 155px);
-    width: calc((100vw - ((100vh - 155px) / 1.4142))/2) 
+  .sticker-board.vertical {
+    height: calc(100vw * 1.414285714285714);
   }
-  .side.vertical {
-    height: calc(80vw * 1.4142);
-    width: 10vw;
-  }
-  .sticker-board__center__middle.vertical {
-    height: calc(80vw * 1.4142);
-    width: 80vw;
-    background-color: aqua;
-  }
-  .sticker-board__center__middle.horizontal {
-    height: calc(100vh - 155px);
-    width: calc((100vh - 155px) / 1.4142);
-    background-color: aqua;
-  }
-  .sticker-board__center {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
-  }
-  .sticker-board__center.vertical {
-    width: 80vw;
+  .row {
+    height: 25%;
   }
   .sticker-board__center.horizontal {
-    width: calc((100vh - 155px) / 1.4142);
+    height: calc(88vh - 50px);
+    width: calc((88vh - 50px) * 0.7070707070707071);
   }
-  .sticker-board__center__top .sticker-board__center__bottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .sticker-board__center p{
-    font-size: 20pt;
-    margin: 10px;
-    text-align: center;
-    white-space: nowrap;
+  .sticker-board__center.vertical {
+    height: calc(100vw * 1.414285714285714);
+    width: 100vw;
   }
 </style>
 
 <script>
+  import Sticker from '../components/Sticker';
   export default {
     data: () => ({
       screenOrientation: 'vertical'
     }),
+    props: [
+      'puzzle'
+    ],
+    components: {
+      'app-sticker': Sticker
+    },
     created() {
       window.addEventListener('resize', this.handleResize)
       this.handleResize();
@@ -88,7 +57,7 @@
       handleResize() {
         const width = window.innerWidth;
         const height = window.innerHeight;
-        this.screenOrientation = height - 155 > (1.4142 * (0.8 * width)) ? 'vertical' : 'horizontal';
+        this.screenOrientation = (0.88*height - 50) > (1.414285714285714 * width) ? 'vertical' : 'horizontal';
       }
     }
   };
