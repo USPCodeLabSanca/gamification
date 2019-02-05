@@ -2,46 +2,14 @@
   <div>
     <h1>Home</h1>
     <div class="challenge_screen">
-      <div class="challenge">
+      <div v-for="missionType in missionTypes" v-bind:key="missionType.title" class="challenge">
         <div class="challenge_header">
-          <img :src="globalIcon"/>
-          <span> Missões Globais </span>
+          <img :src="missionType.icon"/>
+          <span> {{missionType.title}} </span>
         </div>
-        <div class="challenge_topic"> 
-          <span>Complete a missão Game Night juntamente com 100 amigos para ganhar prêmios</span>
-          <img :src="checkedIcon"/>
-        </div>
-      </div>
-      <div class="challenge">
-        <div class="challenge_header">
-          <img :src="calendarIcon"/>
-          <span> Missões de Eventos </span>
-        </div>
-        <div class="challenge_topic"> 
-          <span>Game Night Challenge</span>
-          <img :src="cancelIcon"/>
-        </div>
-        <div class="challenge_topic"> 
-          <span>Assista a palestra "vida de jogos"</span>
-          <img :src="checkedIcon"/>
-        </div>
-        <div class="challenge_topic"> 
-          <span>Converse com NPC Rufus Lenhador</span>
-          <img :src="cancelIcon"/>
-        </div>
-      </div>
-      <div class="challenge">
-        <div class="challenge_header">
-          <img :src="placeholderIcon"/>
-          <span> Missões de Check-in </span>
-        </div>
-        <div class="challenge_topic"> 
-          <span>Visite a Biblioteca do ICMC</span>
-          <img :src="checkedIcon"/>
-        </div>
-        <div class="challenge_topic"> 
-          <span>Conheça o Bandejão!</span>
-          <img :src="checkedIcon"/>
+        <div v-for="mission in missionType.missions" v-bind:key="mission.id" class="challenge_topic"> 
+          <span>{{mission.text}}</span>
+          <img :src="mission.checked?checkedIcon:cancelIcon"/>
         </div>
       </div>
     </div>
@@ -102,11 +70,56 @@ import cancelIcon from '../assets/cancel.png';
 export default {
   data: function () {
     return {
-      globalIcon: globalIcon,
-      calendarIcon: calendarIcon,
-      placeholderIcon: placeholderIcon,
       checkedIcon: checkedIcon,
       cancelIcon: cancelIcon,
+      missionTypes: 
+        [{
+          title: 'Missões Batatais',
+          icon: globalIcon,
+          missions: [
+            {
+              id: 0,
+              text: 'Complete a missão Game Night juntamente com 100 amigos para ganhar prêmios',
+              checked: true,
+            },
+          ],
+        }, {
+          title: 'Missões de Eventos',
+          icon: calendarIcon,
+          missions: [
+            {
+              id: 0,
+              text: 'Game Night Challenge',
+              checked: false,
+            },
+            {
+              id: 1,
+              text: `Assista a palestra 'vida de jogos'`,
+              checked: false,
+            },
+            {
+              id: 2,
+              text: 'Converse com NPC Rufus Lenhador',
+              checked: true,
+            },
+          ],
+        }, {
+          title: 'Missões de Check-in',
+          icon: placeholderIcon,
+          missions: [
+            {
+              id: 0,
+              text: 'Visite a Biblioteca do ICMC',
+              checked: false,
+            },
+            {
+              id: 1,
+              text: 'Conheça o Bandejão',
+              checked: true,
+            },
+          ],
+        },
+      ],
     }
   }
 }
