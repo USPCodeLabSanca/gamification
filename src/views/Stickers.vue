@@ -43,6 +43,9 @@
     font-size: 4vh;
     margin: 0;
   }
+  .scroll {
+    overflow: hidden;
+  }
 </style>
 
 <script>

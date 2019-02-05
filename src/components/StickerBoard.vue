@@ -10,8 +10,9 @@
 
 <style scoped>
   .sticker-board {
-    width: 100vw;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
