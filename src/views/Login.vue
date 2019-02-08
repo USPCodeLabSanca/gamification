@@ -1,43 +1,30 @@
 <template>
-  <div class="col-xs-4 col-md-4">
+  <q-page padding class="docs-input justify-center">
     <h2>Login</h2>
-    <div class="form-group">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="usuario"
-        v-model="credentials.username"
-      >
-    </div>
-    <div class="form-group">
-      <input
-        type="password"
-        class="form-control"
-        placeholder="senha"
-        v-model="credentials.password"
-      >
-    </div>
-    <button class="btn btn-primary" @click="submit()">Entrar</button>
+    <q-input v-model="credentials.username" float-label="usuario" />
+    <q-input v-model="credentials.password" type="password" float-label="senha"/>
+    <q-btn color="primary" label="Entrar" @click="submit()"/>
     <facebook-login class="button"
       appId="255459355343445"
       @login="onLogin"
       @logout="onLogout"
       @sdk-loaded="sdkLoaded"
-      style='align: center; margin-top: 15px'>
+      style='align: center; margin-top: 10%'>
     </facebook-login>
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style='align: center; margin-top: 15px'> </div>
     <router-link :to=register>Cadastre-se</router-link>
-  </div>
+  </q-page>
 </template>
 
 <style scoped>
+
 h2 {
-  text-align: center;
-  margin-top: 50px;
+  margin-top: 20%;
 }
 
 button {
   float: right;
+  margin-top: 5%;
 }
 
 </style>
