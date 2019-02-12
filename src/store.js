@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isUserLogged: true,
+    isUserLogged: false,
     userCards: 18,
     totalCards: 25,
     points: 70,

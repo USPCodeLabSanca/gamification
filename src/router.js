@@ -1,13 +1,15 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import DefaultLayout from './layouts/Default.vue'
-import Home from './views/Home.vue'
-import Stickers from '@/views/Stickers'
-import Login from '@/views/Login'
-import Register from '@/views/Register'
-import PageNotFound from '@/views/PageNotFound'
+import Vue from 'vue';
+import Router from 'vue-router';
+import DefaultLayout from '@/layouts/Default.vue';
+import Home from '@/views/Home.vue';
+import Quests from '@/views/Quests.vue';
+import Stickers from '@/views/Stickers';
+import Login from '@/views/Login';
+import Register from '@/views/Register';
+import Help from '@/views/Help';
+import PageNotFound from '@/views/PageNotFound';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -21,19 +23,29 @@ export default new Router({
           component: Home
         },
         {
+          path: '/quests',
+          name: 'Missões',
+          component: Quests
+        },
+        {
           path: '/stickers',
-          name: 'Stickers',
+          name: 'Figurinhas',
           component: Stickers
         },
         {
           path: '/login',
-          name: 'Login Page',
+          name: 'Entrar',
           component: Login
         },
         {
           path: '/register',
-          name: 'Register',
+          name: 'Cadastrar',
           component: Register
+        },
+        {
+          path: '/help',
+          name: 'Ajuda',
+          component: Help
         },
         {
           path: '**',
@@ -43,4 +55,4 @@ export default new Router({
       ]
     }
   ]
-})
+});

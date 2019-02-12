@@ -18,11 +18,9 @@
               </router-link>
             </li>
             <li v-if="isUserLogged">
-              <router-link to=/points>
-                <i class="material-icons navbar">stars</i>
-                {{points}} Pontos
-                <q-progress :percentage="points" />
-              </router-link>
+              <i class="material-icons navbar">stars</i>
+              {{points}} Pontos
+              <q-progress :percentage="points" />
             </li>
             <li v-if="!isUserLogged">
               <img src="@/assets/logo.png" class="logo" />
@@ -32,25 +30,33 @@
       </q-layout-header>
       <q-layout-drawer side="left" v-model="showLeft" :content-style="{'background-color': '#C0C0C0'}">
         <q-list no-border link>
-          <q-item to="/">
+          <q-item v-if="!isUserLogged" to="/">
             <q-item-side icon="home" />
             <q-item-main label="Home" />
+          </q-item>
+          <q-item v-if="!isUserLogged" to="/login">
+            <q-item-side icon="person" />
+            <q-item-main label="Entrar" />
+          </q-item>
+          <q-item v-if="!isUserLogged" to="/register">
+            <q-item-side icon="person_add" />
+            <q-item-main label="Cadastrar" />
+          </q-item>
+          <q-item v-if="isUserLogged" to="/quests">
+            <q-item-side icon="stars" />
+            <q-item-main label="Missões" />
           </q-item>
           <q-item v-if="isUserLogged" to="/stickers">
             <q-item-side icon="style" class="invertStyle" />
             <q-item-main label="Figurinhas" />
           </q-item>
-          <q-item v-if="isUserLogged" to="/points">
-            <q-item-side icon="stars" />
-            <q-item-main label="Pontos" />
+          <q-item to="/help">
+            <q-item-side icon="help" />
+            <q-item-main label="Ajuda" />
           </q-item>
-          <q-item v-if="!isUserLogged" to="/login">
-            <q-item-side icon="person" />
-            <q-item-main label="Login" />
-          </q-item>
-          <q-item to="**">
-            <q-item-side icon="report_problem" />
-            <q-item-main label="Page Not Found" />
+          <q-item v-if="isUserLogged" to="/logout">
+            <q-item-side icon="exit_to_app" />
+            <q-item-main label="Sair" />
           </q-item>
         </q-list>
       </q-layout-drawer>
