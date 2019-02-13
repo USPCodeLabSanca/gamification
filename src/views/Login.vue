@@ -34,9 +34,7 @@ import facebookLogin from 'facebook-login-vuejs';
 
 export default {
   mounted() {
-    gapi.signin2.render('google-signin-button', {
-      onsuccess: this.onSignIn
-    })
+
   },
     data() {
         return {
@@ -45,11 +43,19 @@ export default {
                 password: ''
             },
             register: '/register',
+            info: 'inf',
         }
     },
     methods: {
         submit() {
-            console.log('user: ' + this.credentials.username + ' - pass: ' + this.credentials.password);
+          console.log('user: ' + this.credentials.username + ' - pass: ' + this.credentials.password);
+          axios
+          .post('https://localhost:3000/api/users/auth', {
+            email: this.credentials.username,
+            password: this.credentials.password
+          })
+          .then(response => (console.log(response)))
+          //console.log(this.info)
         },
         getUserData() {
           this.FB.api('/me', 'GET', { fields: 'id, name, email' },
