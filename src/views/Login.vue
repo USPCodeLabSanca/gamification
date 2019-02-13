@@ -23,6 +23,9 @@ button {
 </style>
 
 <script>
+import Router from '../router';
+import store from '../store';
+
 let auth_uri = 'http://localhost:3000';
 
 export default {
@@ -40,6 +43,8 @@ export default {
     login(response) {
       this.credentials.token = response.data.token;
       console.log('token: ' + this.credentials.token);
+      store.commit('login', this.credentials.token);
+      Router.push({name: 'Home'});
     },
     submit() {
       console.log('user: ' + this.credentials.username + ' - pass: ' + this.credentials.password);

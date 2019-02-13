@@ -30,6 +30,7 @@ button {
 
 <script>
 import Router from '../router';
+import store from '../store';
 
 let register_uri = 'http://localhost:3000';
 
@@ -73,6 +74,7 @@ export default {
         login(response) {
             this.data.token = response.data.token;
             console.log('token: ' + this.data.token);
+            store.commit('login', this.data.token);
             Router.push({name: 'Home'});
         }
     }
