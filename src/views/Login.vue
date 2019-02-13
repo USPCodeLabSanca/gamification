@@ -23,6 +23,7 @@ button {
 </style>
 
 <script>
+let auth_uri = 'http://localhost:3000';
 
 export default {
   data() {
@@ -32,7 +33,7 @@ export default {
             password: '',
             token: '',
         },
-        register: '/register'
+        register: '/register',
     }
   },
   methods: {
@@ -43,7 +44,7 @@ export default {
     submit() {
       console.log('user: ' + this.credentials.username + ' - pass: ' + this.credentials.password);
       axios
-      .post('https://localhost:3000/api/users/auth', {
+      .post(auth_uri + '/api/users/auth', {
         email: this.credentials.username,
         password: this.credentials.password
       })
@@ -51,6 +52,7 @@ export default {
       .catch(error => {
         console.log('erro: ' + error)
         if (error.response && error.response.status === 400) {
+          console.log('erro: ' + error)
           if (error === "Email not found") {
             alert('Email inválido');
             this.credentials.email = '';

@@ -31,6 +31,8 @@ button {
 <script>
 import Router from '../router';
 
+let register_uri = 'http://localhost:3000';
+
 export default {
     data() {
         return {
@@ -51,7 +53,7 @@ export default {
         },
         submit() {
             axios
-            .post('http://localhost:3000/api/users/register', {
+            .post(register_uri + '/api/users/register', {
                 name: this.data.name,
                 email: this.data.email,
                 password: this.data.password
