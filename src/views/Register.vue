@@ -60,7 +60,7 @@ export default {
             .catch(error => {
                 console.log('erro' + error)
                 if (error.response) {
-                    console.log(error.response.status)
+                    console.log(error.response.status === 409)
                     alert('E-mail já utilizado');
                     this.data.email = '';
                     this.$refs.email.focus();
