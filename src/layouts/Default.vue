@@ -54,7 +54,7 @@
             <q-item-side icon="help" />
             <q-item-main label="Ajuda" />
           </q-item>
-          <q-item v-if="isUserLogged" to="/logout">
+          <q-item v-if="isUserLogged" to="/" @click.native="logout()">
             <q-item-side icon="exit_to_app" />
             <q-item-main label="Sair" />
           </q-item>
@@ -122,6 +122,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import store from '../store';
   export default {
     data: () => ({
       showLeft: false,
@@ -142,6 +143,9 @@
     methods: {
       handleResize() {
         this.windowWidth = window.innerWidth;
+      },
+      logout() {
+        store.commit('logout');
       }
     }
   };
