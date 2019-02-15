@@ -5,16 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isUserLogged: false,
+    isUserLogged: true,
     userCards: 18,
-    totalCards: 25,
+    totalCards: 48,
     points: 70,
     puzzleNumber: 3,
     stickers: [
-      [true, true, false, true, true, true, true, false, false, true, true, false, true, true, true, false],
-      [true, true, true, false, true, false, true, false, true, false, true, false, true, false, true, false],
-      [true, false, false, false, false, false, true, false, false, false, true, true, true, false, true, false]
-    ]
+      [1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0],
+      [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+      [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0]
+    ],
+    packs: 99
   },
   getters: {
     isUserLogged: ({ isUserLogged }) => isUserLogged,
@@ -28,10 +29,11 @@ export default new Vuex.Store({
     stickerCount: ({ stickers }) => {
       let count = [];
       for (let i = 0; i < stickers.length; ++i) {
-        count.push(stickers[i].filter(sticker => sticker === true).length);
+        count.push(stickers[i].filter(sticker => sticker > 0).length);
       }
       return count;
-    }
+    },
+    packs: ({ packs }) => packs
   },
   mutations: {
 

@@ -2,7 +2,9 @@
   <div class="sticker-board" :class="screenOrientation">
     <div class="sticker-board__center" :class="screenOrientation">
       <div v-for="row in 4" :key="row" class="row">
-        <app-sticker v-for="col in 4" :key="col" :row="row" :col="col" :puzzle="puzzle"/>
+        <div class="sticker-container" v-for="col in 4" :key="col">
+          <app-sticker :row="row" :col="col" :puzzle="puzzle" :show="false" />
+        </div>
       </div>
     </div>
   </div>
@@ -33,6 +35,11 @@
     height: calc(100vw * 1.414285714285714);
     width: 100vw;
   }
+  .sticker-container {
+    height: 100%;
+    width: 25%;
+    position: relative;
+  }
 </style>
 
 <script>
@@ -48,11 +55,11 @@
       'app-sticker': Sticker
     },
     created() {
-      window.addEventListener('resize', this.handleResize)
+      window.addEventListener('resize', this.handleResize);
       this.handleResize();
     },
     destroyed() {
-      window.removeEventListener('resize', this.handleResize)
+      window.removeEventListener('resize', this.handleResize);
     },
     methods: {
       handleResize() {

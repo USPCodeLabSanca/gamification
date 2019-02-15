@@ -41,6 +41,7 @@
   }
   .stickers__title p {
     font-size: 4vh;
+    font-family: 'Adventuring';
     margin: 0;
   }
   .scroll {

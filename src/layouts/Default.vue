@@ -13,14 +13,20 @@
             </li>
             <li v-if="isUserLogged">
               <router-link to=/stickers>
-                <i class="material-icons invertStyle navbar">style</i>
-                {{cards.user}}/{{cards.total}} {{windowWidth > 350 ? 'Figurinhas' : ''}}
+                <i class="material-icons navbar">import_contacts</i>
+                {{cards.user}}/{{cards.total}} {{windowWidth > 535 ? 'Figurinhas' : ''}}
               </router-link>
             </li>
             <li v-if="isUserLogged">
-              <i class="material-icons navbar">stars</i>
-              {{points}} Pontos
+              <i class="material-icons navbar">monetization_on</i>
+              {{points}} {{windowWidth > 360 ? 'Pontos' : ''}}
               <q-progress :percentage="points" />
+            </li>
+            <li v-if="isUserLogged">
+              <router-link to=/packs>
+                <i class="material-icons invertStyle navbar">style</i>
+                {{packs}} {{windowWidth > 440 ? 'Pacotes' : ''}}
+              </router-link>
             </li>
             <li v-if="!isUserLogged">
               <img src="@/assets/logo.png" class="logo" />
@@ -43,12 +49,16 @@
             <q-item-main label="Cadastrar" />
           </q-item>
           <q-item v-if="isUserLogged" to="/quests">
-            <q-item-side icon="stars" />
+            <q-item-side icon="explore" />
             <q-item-main label="Missões" />
           </q-item>
           <q-item v-if="isUserLogged" to="/stickers">
-            <q-item-side icon="style" class="invertStyle" />
+            <q-item-side icon="import_contacts" />
             <q-item-main label="Figurinhas" />
+          </q-item>
+          <q-item v-if="isUserLogged" to="/packs">
+            <q-item-side icon="style" class="invertStyle" />
+            <q-item-main label="Pacotes" />
           </q-item>
           <q-item to="/help">
             <q-item-side icon="help" />
@@ -98,6 +108,9 @@
   li {
     padding: 0 15px 0 0;
   }
+  .q-item-label, li {
+    font-family: 'Adventuring';
+  }
   li a {
     text-decoration: none;
     color: black;
@@ -130,14 +143,15 @@
     computed: mapGetters([
       'isUserLogged',
       'cards',
-      'points'
+      'points',
+      'packs'
     ]),
     created() {
-      window.addEventListener('resize', this.handleResize)
+      window.addEventListener('resize', this.handleResize);
       this.handleResize();
     },
     destroyed() {
-      window.removeEventListener('resize', this.handleResize)
+      window.removeEventListener('resize', this.handleResize);
     },
     methods: {
       handleResize() {

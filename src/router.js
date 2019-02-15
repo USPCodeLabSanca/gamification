@@ -4,6 +4,7 @@ import DefaultLayout from '@/layouts/Default.vue';
 import Home from '@/views/Home.vue';
 import Quests from '@/views/Quests.vue';
 import Stickers from '@/views/Stickers';
+import Packs from '@/views/Packs';
 import Login from '@/views/Login';
 import Register from '@/views/Register';
 import Help from '@/views/Help';
@@ -31,6 +32,11 @@ export default new Router({
           path: '/stickers',
           name: 'Figurinhas',
           component: Stickers
+        },
+        {
+          path: '/packs',
+          name: 'Pacotes',
+          component: Packs
         },
         {
           path: '/login',
