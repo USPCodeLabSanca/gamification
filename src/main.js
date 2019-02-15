@@ -63,6 +63,7 @@ Vue.use(Quasar, {
  })
 
 Vue.config.productionTip = false
+window.axios = require('axios');
 
 new Vue({
   router,

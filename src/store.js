@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isUserLogged: true,
+    isUserLogged: false,
+    token: '',
     userCards: 18,
     totalCards: 48,
     points: 70,
@@ -36,7 +37,14 @@ export default new Vuex.Store({
     packs: ({ packs }) => packs
   },
   mutations: {
-
+    login(state, token) {
+      state.isUserLogged = true;
+      state.token = token;
+    },
+    logout(state) {
+      state.isUserLogged = false;
+      state.token = '';
+    }
   },
   actions: {
 

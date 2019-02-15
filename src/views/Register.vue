@@ -6,7 +6,7 @@
     @submit="checkForm">
 
     <q-input v-model="data.name" float-label="Nome" :disable="disableform"/>
-    <q-input v-model="data.email" type="email" float-label="E-mail" :disable="disableform"/>
+    <q-input v-model="data.email" type="email" float-label="E-mail" :disable="disableform" ref="email"/>
     <q-input v-model="data.nusp" type="number" float-label="Número USP"/>
     <q-input v-model="data.password" type="password" float-label="Senha" v-if="!disableform"/>
     <q-input type="password" float-label="Confirmar senha" v-if="!disableform"/>
@@ -29,6 +29,10 @@ button {
 </style>
 
 <script>
+import Router from '../router';
+import store from '../store';
+
+let register_uri = 'http://localhost:3000';
 
 export default {
     data() {
@@ -37,15 +41,42 @@ export default {
                 name: '',
                 email: '',
                 nusp: '',
-                password: ''
+                password: '',
+                token: '',
             },
             disableform: false //deixar true se tiver logado por fb ou google
         }
     },
     methods: {
         checkForm() {
-            console.log('name: ' + this.data.name + ' email: ' + this.data.email + ' nusp: ' + this.data.nusp + ' password: ' + this.data.password);
+            //console.log('name: ' + this.data.name + ' email: ' + this.data.email + ' nusp: ' + this.data.nusp + ' password: ' + this.data.password);
+            this.submit()
         },
+        submit() {
+            axios
+            .post(register_uri + '/api/users/register', {
+                name: this.data.name,
+                email: this.data.email,
+                password: this.data.password
+            })
+            .then(response => this.login(response))
+            .catch(error => {
+                console.log('erro' + error)
+                if (error.response) {
+                    console.log(error.response.status === 409)
+                    alert('E-mail já utilizado');
+                    this.data.email = '';
+                    this.$refs.email.focus();
+                }
+            })
+        
+        },
+        login(response) {
+            this.data.token = response.data.token;
+            console.log('token: ' + this.data.token);
+            store.commit('login', this.data.token);
+            Router.push({name: 'Home'});
+        }
     }
 }
 
