@@ -25,7 +25,7 @@
             <li v-if="isUserLogged">
               <router-link to=/packs>
                 <i class="material-icons invertStyle navbar">style</i>
-                {{packs}} {{windowWidth > 440 ? 'Pacotes' : ''}}
+                {{packs}} {{windowWidth > 440 ? 'Pacote'+ (packs != 1 ? 's' : '') : ''}}
               </router-link>
             </li>
             <li v-if="!isUserLogged">

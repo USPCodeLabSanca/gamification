@@ -37,9 +37,14 @@ export default new Vuex.Store({
     packs: ({ packs }) => packs
   },
   mutations: {
-    login(state, token) {
+    login(state, data) {
       state.isUserLogged = true;
-      state.token = token;
+      state.token = data.token;
+      state.points = data.user.points;
+      state.packs = data.user.packs;
+      state.stickers = data.user.cards;
+      const reducer = (accumulator, currentValue) => accumulator + currentValue.filter(stickerCount => stickerCount > 0).length;
+      state.userCards = data.user.cards.reduce(reducer, 0);
     },
     logout(state) {
       state.isUserLogged = false;

@@ -57,6 +57,7 @@ export default {
             .post(register_uri + '/api/users/register', {
                 name: this.data.name,
                 email: this.data.email,
+                nusp: this.data.nusp,
                 password: this.data.password
             })
             .then(response => this.login(response))
@@ -74,7 +75,7 @@ export default {
         login(response) {
             this.data.token = response.data.token;
             console.log('token: ' + this.data.token);
-            store.commit('login', this.data.token);
+            store.commit('login', response.data);
             Router.push({name: 'Home'});
         }
     }

@@ -44,7 +44,7 @@
         <img v-if="!shake" :class="{noPack: zeroPacks}" @click="shake = (!zeroPacks)" src="@/assets/pack.png" />
       </transition>
     </div>
-    <p class="subtitle">{{ packs }} Pacotes Restantes</p>
+    <p class="subtitle">{{ packs }} Pacote{{ packs != 1 ? 's' : '' }} Restante{{ packs != 1 ? 's' : '' }}</p>
   </div>
 </template>
 
