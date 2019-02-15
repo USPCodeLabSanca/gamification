@@ -43,6 +43,7 @@
     font-size: 4vh;
     font-family: 'Adventuring';
     margin: 0;
+    color: var(--q-color-dark);
   }
   .scroll {
     overflow: hidden;

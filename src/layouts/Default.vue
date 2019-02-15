@@ -9,6 +9,7 @@
                 flat round dense
                 @click="showLeft = !showLeft"
                 icon="menu"
+                color="white"
               />
             </li>
             <li v-if="isUserLogged">
@@ -20,7 +21,7 @@
             <li v-if="isUserLogged">
               <i class="material-icons navbar">monetization_on</i>
               {{points}} {{windowWidth > 360 ? 'Pontos' : ''}}
-              <q-progress :percentage="points" />
+              <q-progress :percentage="points" color="dark"/>
             </li>
             <li v-if="isUserLogged">
               <router-link to=/packs>
@@ -34,9 +35,9 @@
           </ul>
         </div>
       </q-layout-header>
-      <q-layout-drawer side="left" v-model="showLeft" :content-style="{'background-color': '#C0C0C0'}">
-        <q-list no-border link>
-          <q-item v-if="!isUserLogged" to="/">
+      <q-layout-drawer side="left" v-model="showLeft" :content-style="{'background-color': '#e69350'}">
+        <q-list no-border highlight="tertiary" link>
+          <q-item v-if="!isUserLogged" to="/" exact>
             <q-item-side icon="home" />
             <q-item-main label="Home" />
           </q-item>
@@ -64,7 +65,7 @@
             <q-item-side icon="help" />
             <q-item-main label="Ajuda" />
           </q-item>
-          <q-item v-if="isUserLogged" to="/" @click.native="logout()">
+          <q-item v-if="isUserLogged" @click.native="logout()">
             <q-item-side icon="exit_to_app" />
             <q-item-main label="Sair" />
           </q-item>
@@ -92,7 +93,7 @@
     position: fixed;
     z-index: 9001;
     top: 0;
-    background-color: gray;
+    background-color: var(--q-color-primary);
     height: 50px;
     padding-left: 15px;
     width: 100vw;
@@ -111,12 +112,21 @@
   .q-item-label, li {
     font-family: 'Adventuring';
   }
-  li a {
+  li, a {
     text-decoration: none;
-    color: black;
+    color: white;
+  }
+  li i {
+    color: var(--q-color-dark);
   }
   li a:hover {
-    color: #404040;
+    color: var(--q-color-dark);
+  }
+  .q-item i {
+    color: var(--q-color-dark);
+  }
+  .q-item-label {
+    color: white;
   }
   li .material-icons.navbar {
     margin: 0 2px 3px 0;
