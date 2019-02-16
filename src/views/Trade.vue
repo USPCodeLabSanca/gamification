@@ -45,6 +45,7 @@
         <div class="trade-page__options">
           <p>Tenho:</p>
           <q-select
+            class="select"
             v-model="have"
             :options="haveOptions"
           />
@@ -58,6 +59,7 @@
         <div class="trade-page__options">
           <p>Quero:</p>
           <q-select
+            class="select"
             v-model="want"
             :options="wantOptions"
           />
@@ -84,6 +86,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center
+  }
+  .trade-page__options .select {
+    margin-left: 10px;
   }
   p.title {
     font-size: 4vh;
@@ -159,6 +164,9 @@
               haveOptions.push({label: k.toString(), value: k});
             }
           }
+        }
+        if (haveOptions.length > 0) {
+          this.have = haveOptions[0].value;
         }
         return haveOptions;
       },
