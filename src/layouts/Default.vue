@@ -79,8 +79,11 @@
 </template>
 
 <style>
-  body, #q-app {
+  body {
     height: 100vh;
+  }
+  .q-layout {
+    overflow: hidden;
   }
   .q-layout-drawer {
     position: fixed !important;
