@@ -53,7 +53,7 @@ h1 {
 }
 .challenge_screen {
   background-color: #BFC7DA;
-  height: 100vh;
+  height: 200vh;
 }
 .challenge_header{
   display: flex;
