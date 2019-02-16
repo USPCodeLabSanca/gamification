@@ -36,7 +36,7 @@
         </div>
       </q-layout-header>
       <q-layout-drawer side="left" v-model="showLeft" :content-style="{'background-color': '#e69350'}">
-        <q-list no-border highlight="tertiary" link>
+        <q-list no-border highlight link>
           <q-item v-if="!isUserLogged" to="/" exact>
             <q-item-side icon="home" />
             <q-item-main label="Home" />

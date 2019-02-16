@@ -15,14 +15,14 @@
             handle-arrow-keys
             arrows
           >
-            <q-carousel-slide v-for="index in 3" :key="index">
+            <q-carousel-slide v-for="index in pack.length" :key="index">
               <div class="sticker-container">
-                <app-sticker :row="1" :col="index" :puzzle="0" :show="true" />
+                <app-sticker :row="pack[index-1][1]" :col="pack[index-1][2]" :puzzle="pack[index-1][0]" :show="true" />
               </div>
             </q-carousel-slide>
           </q-carousel>
-          <div v-else class="sticker-container" v-for="index in 3" :key="index">
-            <app-sticker :row="1" :col="index" :puzzle="0" :show="true" />
+          <div v-else class="sticker-container" v-for="index in pack.length" :key="index">
+            <app-sticker :row="pack[index-1][1]" :col="pack[index-1][2]" :puzzle="pack[index-1][0]" :show="true" />
           </div>
         </div>
         <q-btn
@@ -41,7 +41,7 @@
         v-on:enter="enter"
         v-on:leave="leave"
       >
-        <img v-if="!shake" :class="{noPack: zeroPacks}" @click="shake = (!zeroPacks)" src="@/assets/pack.png" />
+        <img v-if="!shake" :class="{noPack: zeroPacks}" @click="callAnimation()" src="@/assets/pack.png" />
       </transition>
     </div>
     <p class="subtitle">{{ packs }} Pacote{{ packs != 1 ? 's' : '' }} Restante{{ packs != 1 ? 's' : '' }}</p>
@@ -126,7 +126,7 @@
 </style>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex';
   import Sticker from '../components/Sticker';
   import Velocity from 'velocity-animate'
   export default {
@@ -134,16 +134,19 @@
       return {
         opened: false,
         shake: false,
-        shakeDuration: 75,
-        screenOrientation: 'vertical'
+        shakeDuration: 100,
+        screenOrientation: 'vertical',
+        opening: false,
+        pack: []
       }
     },
     computed: {
       ...mapGetters([
-        'packs'
+        'packs',
+        'cards'
       ]),
       zeroPacks: function() {
-        return this.packs === 0;
+        return (this.packs === 0) || (this.cards.total - this.cards.user < 1);
       }
     },
     components: {
@@ -157,10 +160,33 @@
       window.removeEventListener('resize', this.handleResize)
     },
     methods: {
+      ...mapActions(['openPack']),
       handleResize() {
         const width = window.innerWidth;
         const height = window.innerHeight;
         this.screenOrientation = ((height/2) * 0.7070707070707071 * 3) < (0.7 * width) ? 'horizontal' : 'vertical';
+      },
+      callAnimation: function() {
+        if(!this.opening) {
+          this.shake = (!this.zeroPacks);
+          if (this.shake) {
+            this.opening = true;
+            this.openPack().then(result => {
+              console.log('result');
+              let r1 = JSON.parse(JSON.stringify(result));
+              console.log(r1);
+              this.pack = result.map(sticker => {
+                let n = sticker[1];
+                sticker[1] = Math.floor(n/4) + 1;
+                sticker.push(n%4+1);
+                return sticker;
+              });
+              console.log(' figs : ')
+              console.log(this.pack);
+              this.opening = false;
+            });
+          }
+        }
       },
       beforeEnter: function (el) {
         el.style.rotateZ = 25;
@@ -180,10 +206,11 @@
                     Velocity(el,
                       { rotateZ: 0 },
                       {
-                        duration: 5 * vm.shakeDuration,
+                        duration: (!vm.opening ? 5 : 0) * vm.shakeDuration,
                         complete: function () {
                           done();
-                          if (!vm.shake) vm.opened = true;
+                          if (!vm.shake && !vm.opening) vm.opened = true;
+                          else vm.shake = true;
                         }
                       }
                     );

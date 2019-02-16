@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Axios from 'axios';
 
 Vue.use(Vuex)
+
+let auth_uri = 'http://localhost:3000';
 
 export default new Vuex.Store({
   state: {
@@ -49,9 +52,26 @@ export default new Vuex.Store({
     logout(state) {
       state.isUserLogged = false;
       state.token = '';
+    },
+    openPack(state, data) {
+      state.stickers = data.cards;
+      state.packs = data.packs;
+      const reducer = (accumulator, currentValue) => accumulator + currentValue.filter(stickerCount => stickerCount > 0).length;
+      state.userCards = state.stickers.reduce(reducer, 0);
     }
   },
   actions: {
-
+    openPack: ({ commit, state }) => (
+      new Promise((resolve, reject) => {
+        Axios({
+          method: 'POST',
+          headers: {'Authorization': 'Bearer ' + state.token},
+          url: auth_uri + '/api/users/open'
+        }).then(response => {
+          commit('openPack', response.data);
+          resolve(response.data.indexes);
+        })
+      })
+    )
   }
 })

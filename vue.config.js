@@ -1,7 +1,7 @@
 module.exports = {
   pluginOptions: {
     quasar: {
-      theme: 'material'
+      theme: 'mat'
     }
   },
   transpileDependencies: [
