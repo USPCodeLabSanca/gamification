@@ -1,18 +1,13 @@
 <template>
-  <q-page padding class="docs-input justify-center">
+ <q-page padding class="docs-input justify-center">
     <h2>Cadastro</h2>
-    <form
-    id="register-form"
-    @submit="checkForm">
-
-    <q-input v-model="data.name" float-label="Nome" :disable="disableform"/>
+    <q-input v-model="data.name" float-label="Nome" :disable="disableform" ref="name"/>
     <q-input v-model="data.email" type="email" float-label="E-mail" :disable="disableform" ref="email"/>
-    <q-input v-model="data.nusp" type="number" float-label="Número USP"/>
-    <q-input v-model="data.password" type="password" float-label="Senha" v-if="!disableform"/>
-    <q-input type="password" float-label="Confirmar senha" v-if="!disableform"/>
-    <q-btn type="submit" color="primary" label="Cadastrar"/>
+    <q-input v-model="data.nusp" type="number" float-label="Número USP" ref="nusp"/>
+    <q-input v-model="data.password" type="password" float-label="Senha" v-if="!disableform" ref="password"/>
+    <q-input v-model="data.confirm" type="password" float-label="Confirmar senha" v-if="!disableform" ref="confirm"/>
+    <q-btn type="submit" color="primary" label="Cadastrar" @click="checkForm"/>
 
-    </form>
   </q-page>
 </template>
 
@@ -42,6 +37,7 @@ export default {
                 email: '',
                 nusp: '',
                 password: '',
+                confirm: '',
                 token: '',
             },
             disableform: false //deixar true se tiver logado por fb ou google
@@ -50,7 +46,44 @@ export default {
     methods: {
         checkForm() {
             //console.log('name: ' + this.data.name + ' email: ' + this.data.email + ' nusp: ' + this.data.nusp + ' password: ' + this.data.password);
-            this.submit()
+            if (this.data.name === '') {
+                alert('Nome é obrigatório');
+                this.$refs.name.focus();
+                return;
+            }
+
+            if (this.data.email === '') {
+                alert('E-mail é obrigatório');
+                this.$refs.email.focus();
+                return;
+            }
+            
+            if (this.data.nusp === '') {
+                alert('Número USP é obrigatório');
+                this.$refs.nusp.focus();
+                return;
+            }
+
+            if (this.data.password === '') {
+                alert('Senha é obrigatória');
+                this.$refs.password.focus();
+                return;
+            }
+            
+            if (this.data.confirm === '') {
+                alert('Confirmação de senha é obrigatória');
+                this.$refs.confirm.focus();
+                return;
+            }
+
+            if (this.data.password === this.data.confirm) {
+                this.submit();
+            } else {
+                alert('Senhas diferentes');
+                this.data.password = '';
+                this.data.confirm = '';
+                this.$refs.password.focus();
+            }
         },
         submit() {
             axios

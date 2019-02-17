@@ -13,6 +13,7 @@
 
 h2 {
   margin-top: 20%;
+  text-align: center;
 }
 
 button {
