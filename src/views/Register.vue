@@ -18,8 +18,8 @@ h2 {
 }
 
 button {
-    float: right;
-    margin-top: 5%; 
+  float: right;
+  margin-top: 5%; 
 }
 </style>
 
@@ -111,7 +111,7 @@ export default {
             store.commit('login', response.data);
             Router.push({name: 'Home'});
         }
-    }
+      }
 }
 
 </script>

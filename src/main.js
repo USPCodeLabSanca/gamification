@@ -16,6 +16,10 @@ import {
   QLayoutDrawer,
   QPage,
   QPageContainer,
+  QTabs,
+  QTab,
+  QTabPane,
+  QRouteTab,
   QToolbar,
   QToolbarTitle,
   QList,
@@ -29,6 +33,7 @@ import {
   QCarousel,
   QCarouselSlide,
   QCarouselControl,
+  QCollapsible,
   QModal,
   QSelect
 } from 'quasar'
@@ -42,6 +47,10 @@ Vue.use(Quasar, {
     QLayoutDrawer,
     QPage,
     QPageContainer,
+    QTabs,
+    QTab,
+    QTabPane,
+    QRouteTab,
     QToolbar,
     QToolbarTitle,
     QList,
@@ -55,6 +64,7 @@ Vue.use(Quasar, {
     QCarousel,
     QCarouselSlide,
     QCarouselControl,
+    QCollapsible,
     QModal,
     QSelect
   },
@@ -62,7 +72,7 @@ Vue.use(Quasar, {
   },
   plugins: {
   }
- })
+})
 
 Vue.config.productionTip = false
 window.axios = require('axios');
