@@ -97,10 +97,15 @@ export default {
             .catch(error => {
                 console.log('erro' + error)
                 if (error.response) {
-                    console.log(error.response.status === 409)
-                    alert('E-mail já utilizado');
-                    this.data.email = '';
-                    this.$refs.email.focus();
+                    if(error.response.status === 409 && error.response.data.error === 'User already exists (email taken)') {
+                        alert('E-mail já utilizado');
+                        this.data.email = '';
+                        this.$refs.email.focus();
+                    } else if(error.response.status === 409 && error.response.data.error === 'User already exists (nusp taken)') {
+                        alert('Número USP já utilizado');
+                        this.data.nusp = '';
+                        this.$refs.nusp.focus();
+                    }
                 }
             })
         
