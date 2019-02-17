@@ -1,0 +1,44 @@
+<template>
+</template>
+
+<style scoped>
+</style>
+
+<script>
+import Router from '../router';
+import store from '../store';
+let register_uri = 'http://localhost:3000';
+export default {
+    data() {
+        return {
+            data: {
+                nusp: '',
+                token: '',
+            }
+        }
+    },
+    mounted() {
+        this.data.nusp = this.$route.query.nusp;
+        this.data.token = this.$route.query.token;
+
+        console.log('nusp: ' + this.data.nusp);
+        axios
+        .post(register_uri + '/api/users/resetoken', {
+            nusp: this.data.nusp,
+            token: this.data.token
+        })
+        .then(this.redirect)
+        .catch(error => {
+            Router.push({name: 'Home'});
+        })
+    },
+    methods: {
+        redirect() {
+            console.log('redirecting');
+            console.log('nusp: ' + this.data.nusp + ' token: ' + this.data.token);
+            Router.push({name: 'NewPass', query: {nusp: this.data.nusp, token: this.data.token}});
+        }    
+        
+    }
+}
+</script>

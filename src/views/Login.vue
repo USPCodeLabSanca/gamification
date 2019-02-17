@@ -48,9 +48,6 @@ export default {
         }
     }
   },
-  mounted() {
-
-  },
   methods: {
     register() {
       Router.push({name: 'Cadastrar'});

@@ -56,6 +56,7 @@ export default {
                         this.email = '';
                         this.$refs.email.focus();
                     } else if(error.response.status === 400) {
+                        console.log('erro: ' + error.response.data.error)
                         alert('Houve um erro ao enviar o e-mail de recuperação de senha, por favor tente novamente');
                     }
                 }
@@ -64,7 +65,7 @@ export default {
     },
     redirect() {
         alert("Um e-mail de recuperação de senha foi enviado para " + this.email);
-        Router.push({name: 'Home'});
+        //Router.push({name: 'Reset'});
     }
   }
 }

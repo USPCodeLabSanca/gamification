@@ -9,7 +9,9 @@ import Trade from '@/views/Trade';
 import Login from '@/views/Login';
 import Register from '@/views/Register';
 import Help from '@/views/Help';
-import Forgot from '@/views/Forgot'
+import Forgot from '@/views/Forgot';
+import NewPass from '@/views/NewPass';
+import Reset from '@/views/Reset';
 import PageNotFound from '@/views/PageNotFound';
 
 Vue.use(Router);
@@ -64,6 +66,16 @@ export default new Router({
           path: '/login/forgot',
           name: 'Forgot',
           component: Forgot
+        },
+        {
+          path: '/login/newpass',
+          name: 'NewPass',
+          component: NewPass
+        },
+        {
+          path: '/login/reset',
+          name: 'Reset',
+          component: Reset
         },
         {
           path: '**',
