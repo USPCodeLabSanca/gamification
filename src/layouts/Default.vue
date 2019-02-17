@@ -153,6 +153,7 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   import store from '../store';
+  import Router from '../router';
   export default {
     data: () => ({
       showLeft: false,
@@ -178,6 +179,7 @@
       },
       logout() {
         store.commit('logout');
+        Router.push({name: 'Home'});
       },
       callLoadQuests() {
         this.loadActiveQuests();

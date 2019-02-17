@@ -1,11 +1,11 @@
 <template>
  <q-page padding class="docs-input justify-center">
     <h2>Cadastro</h2>
-    <q-input v-model="data.name" float-label="Nome" :disable="disableform" ref="name"/>
-    <q-input v-model="data.email" type="email" float-label="E-mail" :disable="disableform" ref="email"/>
+    <q-input v-model="data.name" float-label="Nome" ref="name"/>
+    <q-input v-model="data.email" type="email" float-label="E-mail" ref="email"/>
     <q-input v-model="data.nusp" type="number" float-label="Número USP" ref="nusp"/>
-    <q-input v-model="data.password" type="password" float-label="Senha" v-if="!disableform" ref="password"/>
-    <q-input v-model="data.confirm" type="password" float-label="Confirmar senha" v-if="!disableform" ref="confirm"/>
+    <q-input v-model="data.password" type="password" float-label="Senha" ref="password"/>
+    <q-input v-model="data.confirm" type="password" float-label="Confirmar senha" ref="confirm"/>
     <q-btn type="submit" color="primary" label="Cadastrar" @click="checkForm"/>
 
   </q-page>
@@ -13,13 +13,20 @@
 
 <style scoped>
 h2 {
+  margin-top: 20%; 
   text-align: center;
-  margin-top: 50px;
+  font-family: 'Adventuring';
+  color: var(--q-color-dark);
 }
 
 button {
   float: right;
   margin-top: 5%; 
+  font-family: 'Adventuring';
+}
+
+.q-input {
+ font-family: 'Adventuring';
 }
 </style>
 
@@ -39,8 +46,7 @@ export default {
                 password: '',
                 confirm: '',
                 token: '',
-            },
-            disableform: false //deixar true se tiver logado por fb ou google
+            }
         }
     },
     methods: {

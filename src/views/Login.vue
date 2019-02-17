@@ -5,7 +5,7 @@
     <q-input v-model="credentials.password" type="password" float-label="senha" ref="password"/>
     <q-btn color="primary" label="Entrar" @click="submit()"/>
     
-    <q-btn color="white" text-color="black" label="Cadastre-se" @click="register()"/>
+    <q-btn style="float: left" color="white" text-color="black" label="Cadastre-se" @click="register()"/>
   </q-page>
 </template>
 
@@ -14,11 +14,18 @@
 h2 {
   margin-top: 20%;
   text-align: center;
+  font-family: 'Adventuring';
+  color: var(--q-color-dark);
 }
 
 button {
   float: right;
   margin-top: 5%;
+  font-family: 'Adventuring';
+}
+
+.q-input {
+  font-family: 'Adventuring';
 }
 
 </style>
