@@ -18,13 +18,11 @@ h2 {
   font-family: 'Adventuring';
   color: var(--q-color-dark);
 }
-
 button {
   float: right;
   margin-top: 5%; 
   font-family: 'Adventuring';
 }
-
 .q-input {
  font-family: 'Adventuring';
 }
@@ -33,9 +31,7 @@ button {
 <script>
 import Router from '../router';
 import store from '../store';
-
 let register_uri = 'http://localhost:3000';
-
 export default {
     data() {
         return {
@@ -57,7 +53,6 @@ export default {
                 this.$refs.name.focus();
                 return;
             }
-
             if (this.data.email === '') {
                 alert('E-mail é obrigatório');
                 this.$refs.email.focus();
@@ -69,7 +64,6 @@ export default {
                 this.$refs.nusp.focus();
                 return;
             }
-
             if (this.data.password === '') {
                 alert('Senha é obrigatória');
                 this.$refs.password.focus();
@@ -81,7 +75,6 @@ export default {
                 this.$refs.confirm.focus();
                 return;
             }
-
             if (this.data.password === this.data.confirm) {
                 this.submit();
             } else {
@@ -124,5 +117,4 @@ export default {
         }
       }
 }
-
 </script>

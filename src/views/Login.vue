@@ -6,6 +6,8 @@
     <q-btn color="primary" label="Entrar" @click="submit()"/>
     
     <q-btn style="float: left" color="white" text-color="black" label="Cadastre-se" @click="register()"/>
+    <q-btn style="float: left" text-color="black" label="Esqueci minha senha" @click="forgot()"/>
+    
   </q-page>
 </template>
 
@@ -55,12 +57,10 @@ export default {
     },
     login(response) {
       this.credentials.token = response.data.token;
-      console.log('token: ' + this.credentials.token);
       store.commit('login', response.data);
       Router.push({name: 'Home'});
     },
     submit() {
-      console.log('user: ' + this.credentials.email + ' - pass: ' + this.credentials.password);
       axios
       .post(auth_uri + '/api/users/auth', {
         email: this.credentials.email,
@@ -81,9 +81,11 @@ export default {
             this.credentials.password = '';
             this.$refs.password.focus();
           }
-          console.log(error.response)
         }
       })
+    },
+    forgot() {
+      Router.push({name: 'Forgot'})
     }
   }
 }
