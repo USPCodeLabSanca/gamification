@@ -79,7 +79,7 @@
   p {
     font-family: 'Adventuring';
     font-size: 2vh;
-    color: var(--q-color-dark)
+    color: var(--q-color-dark);
   }
   .modal {
     height: 100%;

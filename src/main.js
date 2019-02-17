@@ -34,7 +34,8 @@ import {
   QCarouselSlide,
   QCarouselControl,
   QCollapsible,
-  QModal
+  QModal,
+  QSelect
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -64,7 +65,8 @@ Vue.use(Quasar, {
     QCarouselSlide,
     QCarouselControl,
     QCollapsible,
-    QModal
+    QModal,
+    QSelect
   },
   directives: {
   },

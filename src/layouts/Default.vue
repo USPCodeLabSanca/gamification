@@ -61,6 +61,10 @@
             <q-item-side icon="style" class="invertStyle" />
             <q-item-main label="Pacotes" />
           </q-item>
+          <q-item v-if="isUserLogged" to="/trade">
+            <q-item-side icon="swap_horizontal_circle" />
+            <q-item-main label="Trocas" />
+          </q-item>
           <q-item to="/help">
             <q-item-side icon="help" />
             <q-item-main label="Ajuda" />
@@ -112,7 +116,7 @@
   li {
     padding: 0 15px 0 0;
   }
-  .q-item-label, li {
+  .q-layout-drawer .q-item-label, li {
     font-family: 'Adventuring';
   }
   li, a {
@@ -128,7 +132,7 @@
   .q-item i {
     color: var(--q-color-dark);
   }
-  .q-item-label .q-layout-drawer {
+  .q-layout-drawer .q-item-label {
     color: white;
   }
   li .material-icons.navbar {
