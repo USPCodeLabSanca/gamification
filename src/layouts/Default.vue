@@ -30,7 +30,7 @@
               </router-link>
             </li>
             <li v-if="!isUserLogged">
-              <img src="@/assets/logo.png" class="logo" />
+              <img src="@/assets/logo2.png" class="logo" />
             </li>
           </ul>
         </div>
