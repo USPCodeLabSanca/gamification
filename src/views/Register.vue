@@ -23,8 +23,8 @@ h2 {
 }
 
 button {
-    float: right;
-    margin-top: 5%; 
+  float: right;
+  margin-top: 5%; 
 }
 </style>
 
@@ -35,50 +35,50 @@ import store from '../store';
 let register_uri = 'http://localhost:3000';
 
 export default {
-    data() {
-        return {
-            data: {
-                name: '',
-                email: '',
-                nusp: '',
-                password: '',
-                token: '',
-            },
-            disableform: false //deixar true se tiver logado por fb ou google
-        }
-    },
-    methods: {
-        checkForm() {
-            //console.log('name: ' + this.data.name + ' email: ' + this.data.email + ' nusp: ' + this.data.nusp + ' password: ' + this.data.password);
-            this.submit()
-        },
-        submit() {
-            axios
-            .post(register_uri + '/api/users/register', {
-                name: this.data.name,
-                email: this.data.email,
-                nusp: this.data.nusp,
-                password: this.data.password
-            })
-            .then(response => this.login(response))
-            .catch(error => {
-                console.log('erro' + error)
-                if (error.response) {
-                    console.log(error.response.status === 409)
-                    alert('E-mail já utilizado');
-                    this.data.email = '';
-                    this.$refs.email.focus();
-                }
-            })
-        
-        },
-        login(response) {
-            this.data.token = response.data.token;
-            console.log('token: ' + this.data.token);
-            store.commit('login', response.data);
-            Router.push({name: 'Home'});
-        }
+  data() {
+    return {
+      data: {
+        name: '',
+        email: '',
+        nusp: '',
+        password: '',
+        token: '',
+      },
+      disableform: false //deixar true se tiver logado por fb ou google
     }
+  },
+  methods: {
+    checkForm() {
+      //console.log('name: ' + this.data.name + ' email: ' + this.data.email + ' nusp: ' + this.data.nusp + ' password: ' + this.data.password);
+      this.submit()
+    },
+    submit() {
+      axios
+      .post(register_uri + '/api/users/register', {
+        name: this.data.name,
+        email: this.data.email,
+        nusp: this.data.nusp,
+        password: this.data.password
+      })
+      .then(response => this.login(response))
+      .catch(error => {
+        console.log('erro' + error)
+        if (error.response) {
+          console.log(error.response.status === 409)
+          alert('E-mail já utilizado');
+          this.data.email = '';
+          this.$refs.email.focus();
+        }
+      })
+    
+    },
+    login(response) {
+      this.data.token = response.data.token;
+      console.log('token: ' + this.data.token);
+      store.commit('login', response.data);
+      Router.push({name: 'Home'});
+    }
+  }
 }
 
 </script>

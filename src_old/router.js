@@ -6,6 +6,7 @@ import Page1 from '@/components/Page1'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import QrReader from '@/components/QrReader'
 
 // Fallback page
 import PageNotFound from '@/components/PageNotFound'
@@ -38,6 +39,11 @@ export default new Router({
       path: '**',
       name: 'PageNotFound',
       component: PageNotFound
+    },
+    {
+      path: '/qrcodereader',
+      name: 'QrCode Reader',
+      component: QrReader
     }
   ]
 })

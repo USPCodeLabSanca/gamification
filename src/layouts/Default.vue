@@ -1,5 +1,5 @@
 <template>
-   <q-layout>
+  <q-layout>
     <div>
       <q-layout-header>
         <div class="app-toolbar">
@@ -49,7 +49,7 @@
             <q-item-side icon="person_add" />
             <q-item-main label="Cadastrar" />
           </q-item>
-          <q-item v-if="isUserLogged" to="/quests">
+          <q-item v-if="isUserLogged" @click.native="callLoadQuests()" to="/quests">
             <q-item-side icon="explore" />
             <q-item-main label="Missões" />
           </q-item>
@@ -128,7 +128,7 @@
   .q-item i {
     color: var(--q-color-dark);
   }
-  .q-item-label {
+  .q-item-label .q-layout-drawer {
     color: white;
   }
   li .material-icons.navbar {
@@ -147,7 +147,7 @@
 </style>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex';
   import store from '../store';
   export default {
     data: () => ({
@@ -168,11 +168,16 @@
       window.removeEventListener('resize', this.handleResize);
     },
     methods: {
+      ...mapActions(['loadPastQuests', 'loadActiveQuests']),
       handleResize() {
         this.windowWidth = window.innerWidth;
       },
       logout() {
         store.commit('logout');
+      },
+      callLoadQuests() {
+        this.loadActiveQuests();
+        this.loadPastQuests();
       }
     }
   };
