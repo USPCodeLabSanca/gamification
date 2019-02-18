@@ -50,7 +50,6 @@ export default new Vuex.Store({
   },
   mutations: {
     login(state, data) {
-      console.log(data);
       state.isUserLogged = true;
       state.token = data.token;
       state.points = data.user.points;

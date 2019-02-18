@@ -1,8 +1,7 @@
 <template>
-  <div style="margin-top: 49px">
+  <div class="challenge" style="margin-top: 49px">
     <q-modal
       v-model="openReader"
-      transition="bounce"
       maximized
       no-esc-dismiss
     >
@@ -111,6 +110,12 @@
   margin:0;
   text-align: center;
 }
+.challenge .q-tab-pane {
+  height: calc(100vh - 98px);
+  background-color: #BFC7DA !important;
+  padding: 0px 0px;;
+  overflow: auto;
+}
 .success_label {
   background-color: green;
   color: white;
@@ -146,7 +151,7 @@ h1 {
 }
 .challenge_screen {
   background-color: #BFC7DA;
-  height: 100vh;
+  height: 100%;
   font-family: 'Adventuring';
 }
 .challenge_header{
@@ -270,7 +275,6 @@ export default {
         store.commit('updateUserData', response.data);
       })
       .catch(error => {
-        console.log('error ' + error);
         this.wrongPassword = true;
       })
     },

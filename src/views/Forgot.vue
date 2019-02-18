@@ -50,7 +50,6 @@ export default {
       })
       .then(this.redirect)
       .catch(error => {
-        console.log('erro' + error)
         if (error.response) {
           if(error.response.status === 400 && error.response.data.error === 'Email not found.') {
             this.$q.notify({
@@ -63,7 +62,6 @@ export default {
             this.email = '';
             this.$refs.email.focus();
           } else if(error.response.status === 400) {
-            console.log('erro: ' + error.response.data.error)
             this.$q.notify({
               message: 'Houve um erro ao enviar o e-mail de recuperação de senha, por favor tente novamente',
               icon: 'warning',

@@ -180,17 +180,12 @@
           if (this.shake) {
             this.opening = true;
             this.openPack().then(result => {
-              console.log('result');
-              let r1 = JSON.parse(JSON.stringify(result));
-              console.log(r1);
               this.pack = result.map(sticker => {
                 let n = sticker[1];
                 sticker[1] = Math.floor(n/4) + 1;
                 sticker.push(n%4+1);
                 return sticker;
               });
-              console.log(' figs : ')
-              console.log(this.pack);
               this.opening = false;
             });
           }
