@@ -10,13 +10,8 @@
         <q-tab slot="title" name="tab-senha">Senha</q-tab>
         <q-tab-pane class="tab-qr" name="tab-qr">
           <div class="modal--readQR">
-            <qrcode-stream v-if="openReader" @decode="onDecode"></qrcode-stream>
+            <qrcode-stream v-if="openReader" @decode="onDecode" :paused="pauseQR"></qrcode-stream>
             <p v-if="!qrFound" class="qr_modal_sentence">Procurando código...</p>
-            <div class="completed_quest" v-else>
-              <p>Quest concluída! :)</p>
-              <p>Pacotes ganhos: {{currentQuest.rewardPacks}}</p>
-              <p>Pontos ganhos: {{currentQuest.rewardPoints}}</p>
-            </div>
             <q-btn
               color="primary"
               @click="closeModal"
@@ -26,18 +21,12 @@
         </q-tab-pane>
         <q-tab-pane class="tab-senha" name="tab-senha">
           <p>Código secreto:</p>
-          <q-input v-model="inserted" type="password"/>
+          <q-input v-model="inserted" type="text"/>
           <q-btn
               color="primary"
               @click="onDecode(inserted)"
-              label="INSERIR CÓDIGO"
+              label="VALIDAR CÓDIGO"
           />
-          <p style="color: red;" v-if="wrongPassword">Senha incorreta :(</p>
-          <div v-if="qrFound" class="completed_quest">
-              <p>Quest concluída! :)</p>
-              <p>Pacotes ganhos: {{currentQuest.rewardPacks}}</p>
-              <p>Pontos ganhos: {{currentQuest.rewardPoints}}</p>
-            </div>
           <q-btn
               color="primary"
               @click="closeModal"
@@ -143,7 +132,9 @@ h1 {
   color: blue
 }
 .q-collapsible .q-item-label {
+  display: flex;
   color: var(--q-color-dark);
+  overflow: show;
 } 
 .q-tab{
   font-family: 'Adventuring';
@@ -165,10 +156,6 @@ h1 {
 .challenge_header span{
   margin-left: 5px;
 }
-.challenge_header img{
-  height: 100%;
-  weight: 50px;
-}
 .challenge_topic{
   display: flex;
   align-items: center;
@@ -182,10 +169,6 @@ h1 {
 }
 .challenge_topic span{
   display: inline-block;
-}
-.challenge_topic img{
-  height: 15px;
-  weight: 15px;
 }
 i{
   color: var(--q-color-dark);
@@ -270,11 +253,27 @@ export default {
       })
       .then(response => {
         this.qrFound = true;
-        this.wrongPassword = false;
         store.commit('updateUserData', response.data);
+        this.$q.notify({
+          message: 'Quest concluída! Recompensa:' + 
+            (this.currentQuest.rewardPoints > 0 ? (' ' + this.currentQuest.rewardPoints + ' Pontos') : '') +
+            (((this.currentQuest.rewardPoints > 0) && (this.currentQuest.rewardPacks > 0)) ? ' e': '') +
+            (this.currentQuest.rewardPacks > 0 ? (' ' + this.currentQuest.rewardPacks + ' Pacote') : ''),
+          type: 'positive',
+          timeout: 3000,
+          position: 'top',
+          closeBtn: 'X'
+        });
       })
       .catch(error => {
-        this.wrongPassword = true;
+        this.closeModal();
+        this.$q.notify({
+          message: 'Código inválido, tente novamente!',
+          icon: 'warning',
+          timeout: 3000,
+          position: 'top',
+          closeBtn: 'X'
+        });
       })
     },
     openModal(quest) {
@@ -284,8 +283,7 @@ export default {
     closeModal() {
       this.openReader = false;
       this.qrFound = false;
-      this.currentQuest = false;
-      this.wrongPassword = false;
+      this.pauseQR = false;
       this.inserted = '';
     }
   },
@@ -294,9 +292,9 @@ export default {
   },
   data: function () {
     return {
-      wrongPassword: false,
       inserted: '',
       qrFound: false,
+      pauseQR: false,
       currentQuest: {},
       openReader: false,
       checkedIcon: checkedIcon,

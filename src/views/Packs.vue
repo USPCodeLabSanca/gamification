@@ -89,6 +89,9 @@
     align-items: center;
     justify-content: space-evenly;
   }
+  .modal .q-btn {
+    font-family: 'Adventuring'
+  }
   .modal__stickers {
     height: 50vh;
     width: 100%;
