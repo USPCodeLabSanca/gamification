@@ -5,6 +5,7 @@ module.exports = {
     }
   },
   transpileDependencies: [
-    /[\\\/]node_modules[\\\/]quasar-framework[\\\/]/
+    /[\\\/]node_modules[\\\/]quasar-framework[\\\/]/,
+   'vuex-persist'
   ]
 }
