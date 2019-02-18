@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios';
+import VuexPersist, { VuexPersistence } from 'vuex-persist';
 
 Vue.use(Vuex)
 
-let auth_uri = 'http://localhost:3000';
+let vuexLocal = new VuexPersistence({storage: window.localStorage})
+
+let auth_uri = 'https://bixoquest.icmc.usp.br';
 
 export default new Vuex.Store({
   state: {
@@ -79,16 +82,6 @@ export default new Vuex.Store({
       state.packs = data.packs;
       state.points = data.points;
       state.questsCompleted = data.questsCompleted;
-      let questToChange = [];
-      state.activeQuests.forEach(quest => {
-        if (state.questsCompleted.includes(quest.questId)) {
-          questToChange.push(quest);
-        };
-      });
-      state.activeQuests = state.activeQuests.filter(quest => !state.questsCompleted.includes(quest.questId));
-      questToChange.forEach(quest => {
-        state.pastQuests.push(quest);
-      });
     }
   },
   actions: {
@@ -124,14 +117,10 @@ export default new Vuex.Store({
           url: auth_uri + '/api/quests/past'
         }).then(response => {
           commit('loadPastQuests', response.data);
-          commit('updateUserData', {
-            packs: state.packs,
-            points: state.points,
-            questsCompleted: state.questsCompleted
-          });
           resolve(response.data.indexes);
         })
       })
     }
-  }
+  },
+  plugins: [vuexLocal.plugin]
 })
