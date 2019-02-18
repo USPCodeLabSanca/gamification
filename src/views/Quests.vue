@@ -1,11 +1,11 @@
 <template>
-  <div class="challenge" style="margin-top: 49px">
+  <div class="challenge-page" style="margin-top: 50px">
     <q-modal
       v-model="openReader"
       maximized
       no-esc-dismiss
     >
-      <q-tabs underline-color="indigo-10">
+      <q-tabs underline-color="dark">
         <q-tab slot="title" default name="tab-qr">Qr Code</q-tab>
         <q-tab slot="title" name="tab-senha">Senha</q-tab>
         <q-tab-pane class="tab-qr" name="tab-qr">
@@ -46,8 +46,8 @@
         </q-tab-pane>
       </q-tabs>
     </q-modal>
-    <q-tabs underline-color="indigo-10">
-      <q-tab default slot="title" name="tab-1">Disponíveis</q-tab>
+    <q-tabs underline-color="dark">
+      <q-tab default slot="title" name="tab-1" >Disponíveis</q-tab>
       <q-tab slot="title" name="tab-2">Finalizadas</q-tab>
       <q-tab-pane name="tab-1">
         <div class="challenge_screen">
@@ -65,7 +65,7 @@
                       <p>Termina em: </p>
                       <p style="color: red">{{formatDate(quest.endDate)}}</p>
                     </div>
-                    <q-btn v-if="!getQuestFinishedLabel(quest, questsCompleted)" label="QrCode / Senha" @click="openModal(quest)"/>
+                    <q-btn v-if="!getQuestFinishedLabel(quest, questsCompleted)" color="primary" label="QrCode / Senha" @click="openModal(quest)"/>
                     <span class="success_label" v-else>Concluída</span>
                   </div>
                 </div>
@@ -110,10 +110,13 @@
   margin:0;
   text-align: center;
 }
-.challenge .q-tab-pane {
+.challenge-page .q-tabs {
+  border-top: 2px  var(--q-color-dark) solid !important;
+}
+.challenge-page .q-tab-pane {
   height: calc(100vh - 98px);
   background-color: #BFC7DA !important;
-  padding: 0px 0px;;
+  padding: 0px 0px;
   overflow: auto;
 }
 .success_label {
@@ -135,10 +138,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.q-btn {
-  background-color: var(--q-color-primary);
-  color: white;
 }
 h1 {
   color: blue

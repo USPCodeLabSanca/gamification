@@ -6,7 +6,7 @@
 </template>
 <style scoped>
 div{
-  background-color: var(--q-color-secondary);
+  background-color: white;
   height: 100vh;
   padding: 5px;
   text-align: center;
@@ -16,6 +16,7 @@ div{
 }
 p{
   font-family: 'Adventuring';
+  color: var(--q-color-dark);
 }
 .title {
   margin-top: 49px;
