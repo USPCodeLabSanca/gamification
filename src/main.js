@@ -35,7 +35,8 @@ import {
   QCarouselControl,
   QCollapsible,
   QModal,
-  QSelect
+  QSelect,
+  Notify
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -71,6 +72,7 @@ Vue.use(Quasar, {
   directives: {
   },
   plugins: {
+    Notify
   }
 })
 
