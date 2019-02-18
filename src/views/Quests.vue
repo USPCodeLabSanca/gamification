@@ -114,7 +114,7 @@
   border-top: 2px  var(--q-color-dark) solid !important;
 }
 .challenge-page .q-tab-pane {
-  height: calc(100vh - 98px);
+  height: calc(100vh - 100px);
   background-color: #BFC7DA !important;
   padding: 0px 0px;
   overflow: auto;

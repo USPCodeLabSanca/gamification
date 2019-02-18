@@ -61,7 +61,7 @@
         if (this.show === true || this.stickers[this.puzzle][this.stickerNumber - this.puzzle * 16 - 1] > 0) {
           return require("../assets/puzzles/" + this.puzzle + "/row-" + this.row + "-col-" + this.col + ".jpg");
         } else {
-          return require("../assets/back" + this.puzzle + ".png");
+          return require("../assets/back" + this.puzzle + ".jpg");
         }
       }
     }

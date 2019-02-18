@@ -1,25 +1,39 @@
 <template>
-  <q-page padding class="docs-input justify-center">
-    <img src="../assets/logo2.png" class="responsive" style="margin-top: 20%">
-    <img src="../assets/porco.png" class="responsive">
+  <div class="home">
+    <img src="../assets/logo2.png" style="height: 10vh; max-width: 90vw;" >
+    <img src="../assets/porco.png"  style="height: 50vh; max-width: 90vw;">
     <br/>
-    <q-btn color="primary" label="Login" @click="login()" v-if="!isUserLogged"/>
-    <q-btn style="float: left" color="white" text-color="black" label="Cadastre-se" @click="register()" v-if="!isUserLogged"/>
-  </q-page>
+    <div class="home-horizontal" v-if="!isUserLogged" >
+      <q-btn color="primary" label="Login" @click="login()" />
+      <q-btn style="float: left" color="white" text-color="black" label="Cadastre-se" @click="register()"/>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.home {
+  margin-top: 50px;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
 }
-
 button {
   float: right;
   margin-top: 5%; 
   font-family: 'Adventuring';
+}
+.home-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 </style>

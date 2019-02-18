@@ -1,17 +1,26 @@
 <template>
-  <q-page padding class="docs-input justify-center">
-    <p>A gamificação da semana de recepção foi desenvolvida por</p>
-    <a href="https://www.fog.icmc.usp.br/"> 
-    <img src="../assets/fog.jpg" class="responsive" height="60%" width="60%">
-    </a>
+  <div class="credits">
     <p>O aplicativo BixoQuest foi desenvolvido por</p>
     <a href="https://www.facebook.com/uspcodelabsanca/">
-    <img src="../assets/codelab.png" class="responsive">
+      <img src="../assets/codelab.png" style="height: 10vh">
     </a>
-  </q-page>
+    <p>A gamificação da semana de recepção foi desenvolvida por</p>
+    <a href="https://www.fog.icmc.usp.br/"> 
+      <img src="../assets/fog.jpg" style="height: 40vh">
+    </a>
+  </div>
 </template>
 
 <style scoped>
+.credits {
+  margin-top: 50px;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 img {
   display: block;
   margin-left: auto;
@@ -19,11 +28,11 @@ img {
 }
 
 p {
-    margin-top: 15%;
     text-align: center;
     font-family: 'Adventuring';
-    font-size: 4vh;
+    font-size: 3vh;
     color: var(--q-color-dark);
+    margin: 0;
 }
 
 </style>
