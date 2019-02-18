@@ -31,6 +31,8 @@ button {
 <script>
 import Router from '../router';
 import store from '../store';
+import hashjs from 'hash.js';
+
 let register_uri = 'http://localhost:3000';
 export default {
     data() {
@@ -84,13 +86,14 @@ export default {
                 this.$refs.password.focus();
             }
         },
-        submit() {
+        async submit() {
+            let hash = hashjs.sha256().update(this.data.password).digest('hex')
             axios
             .post(register_uri + '/api/users/register', {
                 name: this.data.name,
                 email: this.data.email,
                 nusp: this.data.nusp,
-                password: this.data.password
+                password: hash
             })
             .then(response => this.login(response))
             .catch(error => {
