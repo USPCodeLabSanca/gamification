@@ -72,12 +72,24 @@ export default {
         if (error.response && error.response.status === 400) {
           console.log('response: ' + error.response.data.error)
           if (error.response.data.error === "Email not found.") {
-            alert('Email inválido');
+            this.$q.notify({
+              message: 'Email inválido',
+              icon: 'warning',
+              timeout: 3000,
+              position: 'top',
+              closeBtn: 'X'
+            });
             this.credentials.email = '';
             this.credentials.password = '';
             this.$refs.email.focus();
           } else if (error.response.data.error === "Invalid Password.") {
-            alert('Senha incorreta');
+            this.$q.notify({
+              message: 'Senha incorreta',
+              icon: 'warning',
+              timeout: 3000,
+              position: 'top',
+              closeBtn: 'X'
+            });
             this.credentials.password = '';
             this.$refs.password.focus();
           }

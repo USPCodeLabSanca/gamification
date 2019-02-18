@@ -147,10 +147,10 @@
     transform: rotate(180deg) scaleX(-1);
   }
   .logo {
-    height: 50px;
+    height: 30px;
     position: fixed;
-    top: 0;
-    left: calc(50% - 34px)
+    top: 10px;
+    left: calc(50% + 14px - 68px);
   }
 </style>
 
