@@ -38,7 +38,7 @@ import store from '../store';
 import hashjs from 'hash.js';
 
 
-let auth_uri = 'http://localhost:3000';
+let auth_uri = 'http://' + process.env.BACK_URI;
 
 export default {
   data() {
