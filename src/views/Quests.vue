@@ -237,7 +237,7 @@ import cancelIcon from '../assets/cancel.png';
 import moment from 'moment';
 import store from '../store';
 import Router from '../router'
-let auth_uri = 'http://localhost:3000';
+let auth_uri = 'https://bixoquest.icmc.usp.br';
 export default {
   computed: mapGetters ([
     'activeQuests',
@@ -253,7 +253,8 @@ export default {
   },
   methods: {
     formatDate: function(date) {
-      return moment(date).format("DD-MM-YYYY hh:mm");
+      
+      return moment(date).utc().format("DD-MM-YYYY HH:mm");
     },
     getQuestFinishedLabel(quest, questsCompleted) {
       return questsCompleted.some(questCompleted => questCompleted === quest.questId);

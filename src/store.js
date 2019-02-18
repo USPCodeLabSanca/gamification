@@ -4,7 +4,7 @@ import Axios from 'axios';
 
 Vue.use(Vuex)
 
-let auth_uri = 'http://localhost:3000';
+let auth_uri = 'https://bixoquest.icmc.usp.br/';
 
 export default new Vuex.Store({
   state: {

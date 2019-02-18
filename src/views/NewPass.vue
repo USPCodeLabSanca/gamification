@@ -27,7 +27,7 @@ button {
 <script>
 import Router from '../router';
 import store from '../store';
-let register_uri = 'http://localhost:3000';
+let register_uri = 'https://bixoquest.icmc.usp.br';
 export default {
   data() {
    return {
