@@ -1,10 +1,8 @@
 <template>
   <q-page padding class="docs-input justify-center">
-    <img src="../assets/logo2.png" class="responsive" style="margin-top: 20%">
-    <img src="../assets/porco.png" class="responsive">
-    <br/>
-    <q-btn color="primary" label="Login" @click="login()" v-if="!isUserLogged"/>
-    <q-btn style="float: left" color="white" text-color="black" label="Cadastre-se" @click="register()" v-if="!isUserLogged"/>
+    <p>Esse aplicativo foi desenvolvido pelos grupos</p>
+    <img src="../assets/fog.jpg" class="responsive" height="70%" width="70%">
+    <img src="../assets/codelab.png" class="responsive">
   </q-page>
 </template>
 
@@ -13,13 +11,14 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
 }
 
-button {
-  float: right;
-  margin-top: 5%; 
-  font-family: 'Adventuring';
+p {
+    margin-top: 20%;
+    text-align: center;
+    font-family: 'Adventuring';
+    font-size: 4vh;
+    color: var(--q-color-dark);
 }
 
 </style>
@@ -44,7 +43,7 @@ export default {
     },
     register() {
       Router.push({name: 'Cadastrar'});
-    }
+    },
   }
 }
 </script>
