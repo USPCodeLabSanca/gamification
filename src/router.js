@@ -43,11 +43,11 @@ export default new Router({
           name: 'Pacotes',
           component: Packs
         },
-        {
-          path: '/trade',
-          name: 'Trocas',
-          component: Trade
-        },
+        // {
+        //   path: '/trade',
+        //   name: 'Trocas',
+        //   component: Trade
+        // },
         {
           path: '/login',
           name: 'Entrar',
