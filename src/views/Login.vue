@@ -35,6 +35,8 @@ button {
 <script>
 import Router from '../router';
 import store from '../store';
+import hashjs from 'hash.js';
+
 
 let auth_uri = 'http://localhost:3000';
 
@@ -57,15 +59,16 @@ export default {
       store.commit('login', response.data);
       Router.push({name: 'Home'});
     },
-    submit() {
+    async submit() {
+      let hash = hashjs.sha256().update(this.credentials.password).digest('hex')
+      console.log(hash)
       axios
       .post(auth_uri + '/api/users/auth', {
         email: this.credentials.email,
-        password: this.credentials.password
+        password: hash
       })
       .then(response => (this.login(response)))
       .catch(error => {
-        console.log('erro: ' + error)
         if (error.response && error.response.status === 400) {
           console.log('response: ' + error.response.data.error)
           if (error.response.data.error === "Email not found.") {

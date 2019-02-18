@@ -1,5 +1,5 @@
 <template>
- <q-page padding class="docs-input justify-center">
+  <q-page padding class="docs-input justify-center">
     <h2>Cadastro</h2>
     <q-input v-model="data.name" float-label="Nome" ref="name"/>
     <q-input v-model="data.email" type="email" float-label="E-mail" ref="email"/>
@@ -24,13 +24,15 @@ button {
   font-family: 'Adventuring';
 }
 .q-input {
- font-family: 'Adventuring';
+  font-family: 'Adventuring';
 }
 </style>
 
 <script>
 import Router from '../router';
 import store from '../store';
+import hashjs from 'hash.js';
+
 let register_uri = 'http://localhost:3000';
 export default {
   data() {
@@ -120,13 +122,14 @@ export default {
         this.$refs.password.focus();
       }
     },
-    submit() {
+    async submit() {
+      let hash = hashjs.sha256().update(this.data.password).digest('hex')
       axios
       .post(register_uri + '/api/users/register', {
-          name: this.data.name,
-          email: this.data.email,
-          nusp: this.data.nusp,
-          password: this.data.password
+        name: this.data.name,
+        email: this.data.email,
+        nusp: this.data.nusp,
+        password: hash
       })
       .then(response => this.login(response))
       .catch(error => {
