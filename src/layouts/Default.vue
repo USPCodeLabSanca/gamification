@@ -69,6 +69,10 @@
             <q-item-side icon="help" />
             <q-item-main label="Ajuda" />
           </q-item>
+          <q-item to="/credits">
+            <q-item-side icon="supervisor_account" />
+            <q-item-main label="Créditos" />
+          </q-item>
           <q-item v-if="isUserLogged" @click.native="logout()">
             <q-item-side icon="exit_to_app" />
             <q-item-main label="Sair" />

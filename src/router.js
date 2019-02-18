@@ -12,6 +12,7 @@ import Help from '@/views/Help';
 import Forgot from '@/views/Forgot';
 import NewPass from '@/views/NewPass';
 import Reset from '@/views/Reset';
+import Credits from '@/views/Credits';
 import PageNotFound from '@/views/PageNotFound';
 
 Vue.use(Router);
@@ -76,6 +77,11 @@ export default new Router({
           path: '/login/reset',
           name: 'Reset',
           component: Reset
+        },
+        {
+          path: '/credits',
+          name: 'Credits',
+          component: Credits
         },
         {
           path: '**',

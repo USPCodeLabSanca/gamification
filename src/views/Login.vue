@@ -56,13 +56,11 @@ export default {
     },
     login(response) {
       this.credentials.token = response.data.token;
-      console.log(response.data.token)
       store.commit('login', response.data);
       Router.push({name: 'Home'});
     },
     async submit() {
       let hash = hashjs.sha256().update(this.credentials.password).digest('hex')
-      console.log(hash)
       axios
       .post(auth_uri + '/api/users/auth', {
         email: this.credentials.email,
@@ -71,7 +69,6 @@ export default {
       .then(response => (this.login(response)))
       .catch(error => {
         if (error.response && error.response.status === 400) {
-          console.log('response: ' + error.response.data.error)
           if (error.response.data.error === "Email not found.") {
             this.$q.notify({
               message: 'Email inválido',

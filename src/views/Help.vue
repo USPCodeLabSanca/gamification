@@ -1,3 +1,25 @@
 <template>
-  <h1>Ajuda</h1>
+  <div>
+    <p class="title">Suporte</p>
+    <p>Em caso de dúvidas, favor entrar em contato conosco através do e-mail: bixoquest@gmail.com</p>
+  </div>
 </template>
+<style scoped>
+div{
+  background-color: var(--q-color-secondary);
+  height: 100vh;
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+p{
+  font-family: 'Adventuring';
+}
+.title {
+  margin-top: 49px;
+  font-size: 40px;
+}
+</style>
+

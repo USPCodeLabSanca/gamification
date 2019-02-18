@@ -26,6 +26,7 @@ export default new Vuex.Store({
     currentQuest: {},
   },
   getters: {
+    token: ({ token }) => token,
     currentQuest: ({ currentQuest }) => currentQuest,
     activeQuests: ({ activeQuests }) => activeQuests,
     pastQuests: ({ pastQuests }) => pastQuests,
@@ -49,7 +50,6 @@ export default new Vuex.Store({
   },
   mutations: {
     login(state, data) {
-      console.log(data);
       state.isUserLogged = true;
       state.token = data.token;
       state.points = data.user.points;
@@ -74,6 +74,11 @@ export default new Vuex.Store({
     },
     loadPastQuests(state, data){
       state.pastQuests = data;
+    },
+    updateUserData(state, data){
+      state.packs = data.packs;
+      state.points = data.points;
+      state.questsCompleted = data.questsCompleted;
     }
   },
   actions: {
