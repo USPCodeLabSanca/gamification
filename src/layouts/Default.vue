@@ -61,10 +61,10 @@
             <q-item-side icon="style" class="invertStyle" />
             <q-item-main label="Pacotes" />
           </q-item>
-          <q-item v-if="isUserLogged" to="/trade">
+          <!-- <q-item v-if="isUserLogged" to="/trade">
             <q-item-side icon="swap_horizontal_circle" />
             <q-item-main label="Trocas" />
-          </q-item>
+          </q-item> -->
           <q-item to="/help">
             <q-item-side icon="help" />
             <q-item-main label="Ajuda" />
