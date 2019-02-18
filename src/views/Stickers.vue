@@ -53,6 +53,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import StickerBoard from '../components/StickerBoard';
+  import Router from '../router';
   export default {
     data: () => ({
       carouselIndex: 0
@@ -64,10 +65,16 @@
       ...mapGetters([
         'puzzleNumber',
         'stickers',
-        'stickerCount'
+        'stickerCount',
+        'isUserLogged'
       ]),
       stickerCountN: function() {
         return this.stickerCount[this.carouselIndex];
+      }
+    },
+    mounted() {
+      if (!this.isUserLogged) {
+        Router.push({name: 'Home'});
       }
     },
     methods: {

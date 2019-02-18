@@ -129,6 +129,8 @@
   import { mapGetters, mapActions } from 'vuex';
   import Sticker from '../components/Sticker';
   import Velocity from 'velocity-animate'
+  import Router from '../router';
+
   export default {
     data () {
       return {
@@ -143,10 +145,16 @@
     computed: {
       ...mapGetters([
         'packs',
-        'cards'
+        'cards',
+        'isUserLogged'
       ]),
       zeroPacks: function() {
         return (this.packs === 0) || (this.cards.total - this.cards.user < 1);
+      }
+    },
+    mounted() {
+      if (!this.isUserLogged) {
+        Router.push({name: 'Home'});
       }
     },
     components: {

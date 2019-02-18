@@ -232,6 +232,7 @@ import checkedIcon from '../assets/checked.png';
 import cancelIcon from '../assets/cancel.png';
 import moment from 'moment';
 import store from '../store';
+import Router from '../router'
 let auth_uri = 'http://localhost:3000';
 export default {
   computed: mapGetters ([
@@ -239,7 +240,13 @@ export default {
     'pastQuests',
     'questsCompleted',
     'token',
+    'isUserLogged'
   ]),
+  mounted() {
+    if (!this.isUserLogged) {
+      Router.push({name: 'Home'});
+    }
+  },
   methods: {
     formatDate: function(date) {
       return moment(date).format("DD-MM-YYYY hh:mm");

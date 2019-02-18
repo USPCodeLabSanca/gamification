@@ -30,11 +30,6 @@ import Router from '../router';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  data() {
-    return {
-      isLogged: false
-    }
-  },
   computed: mapGetters([
       'isUserLogged',
    ]),

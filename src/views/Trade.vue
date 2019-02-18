@@ -140,6 +140,7 @@
   import { mapGetters } from 'vuex';
   import VueQRCodeComponent from 'vue-qrcode-component'
   import Sticker from '../components/Sticker';
+  import Router from '../router';
 
   export default {
     data () {
@@ -153,7 +154,8 @@
     computed: {
       ...mapGetters([
         'cards',
-        'stickers'
+        'stickers',
+        'isUserLogged'
       ]),
       haveOptions: function() {
         let total = this.cards.total;
@@ -195,6 +197,11 @@
         card.push(n%4+1);
         card.push(n);
         return card;
+      }
+    },
+    mounted() {
+      if(!this.isUserLogged) {
+        Router.push({name: 'Home'});
       }
     },
     components: {
