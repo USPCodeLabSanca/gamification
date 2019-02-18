@@ -56,7 +56,6 @@ export default {
     },
     login(response) {
       this.credentials.token = response.data.token;
-      console.log(response.data.token);
       store.commit('login', response.data);
       Router.push({name: 'Home'});
     },
