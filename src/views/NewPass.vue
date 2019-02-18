@@ -84,7 +84,6 @@ export default {
       this.data.nusp = this.$route.query.nusp;
       this.data.token = this.$route.query.token;
 
-      console.log('nusp: ' + this.data.nusp);
       axios
       .post(register_uri + '/api/users/reset', {
         nusp: this.data.nusp,
@@ -93,10 +92,8 @@ export default {
       })
       .then(this.redirect)
       .catch(error => {
-        console.log('erro' + error)
         if (error.response) {
           if(error.response.status === 400) {
-            console.log(error.response.data.error)
             this.$q.notify({
               message: 'Erro ao atualizar a senha, por favor tente novamente',
               icon: 'warning',

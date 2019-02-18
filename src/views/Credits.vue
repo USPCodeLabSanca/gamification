@@ -1,7 +1,8 @@
 <template>
   <q-page padding class="docs-input justify-center">
-    <p>Esse aplicativo foi desenvolvido pelos grupos</p>
-    <img src="../assets/fog.jpg" class="responsive" height="70%" width="70%">
+    <p>A gamificação da semana de recepção foi desenvolvida por</p>
+    <img src="../assets/fog.jpg" class="responsive" height="60%" width="60%">
+    <p>O aplicativo BixoQuest foi desenvolvido por</p>
     <img src="../assets/codelab.png" class="responsive">
   </q-page>
 </template>
@@ -14,7 +15,7 @@ img {
 }
 
 p {
-    margin-top: 20%;
+    margin-top: 15%;
     text-align: center;
     font-family: 'Adventuring';
     font-size: 4vh;

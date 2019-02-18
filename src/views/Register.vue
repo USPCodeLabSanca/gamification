@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     checkForm() {
-      //console.log('name: ' + this.data.name + ' email: ' + this.data.email + ' nusp: ' + this.data.nusp + ' password: ' + this.data.password);
       if (this.data.name === '') {
         this.$q.notify({
           message: 'Nome é obrigatório',
@@ -133,7 +132,6 @@ export default {
       })
       .then(response => this.login(response))
       .catch(error => {
-        console.log('erro' + error)
         if (error.response) {
           if(error.response.status === 409 && error.response.data.error === 'User already exists (email taken)') {
             this.$q.notify({
@@ -162,7 +160,6 @@ export default {
     },
     login(response) {
       this.data.token = response.data.token;
-      console.log('token: ' + this.data.token);
       store.commit('login', response.data);
       Router.push({name: 'Home'});
     }

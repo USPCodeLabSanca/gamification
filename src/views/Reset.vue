@@ -21,7 +21,6 @@ export default {
         this.data.nusp = this.$route.query.nusp;
         this.data.token = this.$route.query.token;
 
-        console.log('nusp: ' + this.data.nusp);
         axios
         .post(register_uri + '/api/users/resetoken', {
             nusp: this.data.nusp,
@@ -34,8 +33,6 @@ export default {
     },
     methods: {
         redirect() {
-            console.log('redirecting');
-            console.log('nusp: ' + this.data.nusp + ' token: ' + this.data.token);
             Router.push({name: 'NewPass', query: {nusp: this.data.nusp, token: this.data.token}});
         }    
         
