@@ -27,6 +27,8 @@ button {
 <script>
 import Router from '../router';
 import store from '../store';
+import hashjs from 'hash.js';
+
 let register_uri = 'https://bixoquest.icmc.usp.br';
 export default {
   data() {
@@ -38,6 +40,24 @@ export default {
       token: '',
     }
    }
+  },
+  mounted() {
+    this.nusp = this.$route.query.nusp;
+    this.token = this.$route.query.token;
+    axios
+    .post(register_uri + '/api/users/resetoken', {
+      nusp: this.nusp,
+      token: this.token
+    }).catch(error => {
+      this.$q.notify({
+        message: 'Link invalido ou expirado',
+        icon: 'warning',
+        timeout: 3000,
+        position: 'top',
+        closeBtn: 'X'
+      });
+      Router.push({name: 'Home'});
+    });
   },
   methods: {
    checkForm() {
@@ -81,13 +101,11 @@ export default {
       }
     },
     submit() {
-      this.data.nusp = this.$route.query.nusp;
-      this.data.token = this.$route.query.token;
-
+      let hash = hashjs.sha256().update(this.data.password).digest('hex');
       axios
       .post(register_uri + '/api/users/reset', {
         nusp: this.data.nusp,
-        password: this.data.password,
+        password: hash,
         token: this.data.token
       })
       .then(this.redirect)
