@@ -1,6 +1,6 @@
 {
-  "name": "gamification",
-  "version": "0.1.0",
+  "name": "BixoQuest!",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -21,7 +21,8 @@
     "vue-qrcode-component": "^2.1.1",
     "vue-qrcode-reader": "^1.4.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-persist": "^2.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",
