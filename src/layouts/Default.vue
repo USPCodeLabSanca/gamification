@@ -171,7 +171,7 @@
       'packs'
       ]),
       pointCalculator: function() {
-      return Math.floor(this.points/12)
+        return Math.round(this.points/12);
       }
     },
     created() {

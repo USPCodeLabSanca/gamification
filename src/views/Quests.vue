@@ -21,7 +21,7 @@
         </q-tab-pane>
         <q-tab-pane class="tab-senha" name="tab-senha">
           <p>Código secreto:</p>
-          <q-input v-model="inserted" type="text"/>
+          <q-input v-model="inserted" type="text" autofocus/>
           <q-btn
               color="primary"
               @click="onDecode(inserted)"

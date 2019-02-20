@@ -1,7 +1,7 @@
 <template>
   <q-page padding class="docs-input justify-center">
     <h2>Recuperação de senha</h2>
-    <q-input v-model="data.password" type="password" float-label="Senha" ref="password"/>
+    <q-input v-model="data.password" type="password" float-label="Senha" ref="password" autofocus/>
     <q-input v-model="data.confirm" type="password" float-label="Confirmar senha" ref="confirm"/>
     <q-btn type="submit" color="primary" label="Salvar" @click="checkForm"/>
   </q-page>
@@ -102,11 +102,12 @@ export default {
     },
     submit() {
       let hash = hashjs.sha256().update(this.data.password).digest('hex');
+      let vm = this;
       axios
       .post(register_uri + '/api/users/reset', {
-        nusp: this.data.nusp,
+        nusp: vm.nusp,
         password: hash,
-        token: this.data.token
+        token: vm.token
       })
       .then(this.redirect)
       .catch(error => {
@@ -128,7 +129,7 @@ export default {
     redirect() {
       this.$q.notify({
         message: 'Senha atualizada com sucesso!',
-        icon: 'warning',
+        type: 'positive',
         timeout: 3000,
         position: 'top',
         closeBtn: 'X'

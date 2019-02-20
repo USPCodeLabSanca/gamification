@@ -1,7 +1,7 @@
 <template>
   <q-page padding class="docs-input justify-center">
     <h2>Esqueci minha senha</h2>
-    <q-input v-model="email" type="email" float-label="email" ref="email"/>
+    <q-input v-model="email" type="email" float-label="email" ref="email" autofocus/>
     
     <q-btn color="primary" text-color="black" label="Enviar" @click="send()"/>
     
