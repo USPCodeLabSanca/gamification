@@ -82,6 +82,16 @@ export default new Vuex.Store({
       state.packs = data.packs;
       state.points = data.points;
       state.questsCompleted = data.questsCompleted;
+      let questToChange = [];	
+      state.activeQuests.forEach(quest => {	
+        if (state.questsCompleted.includes(quest.questId)) {	
+          questToChange.push(quest);	
+        };	
+      });	
+      state.activeQuests = state.activeQuests.filter(quest => !state.questsCompleted.includes(quest.questId));	
+      questToChange.forEach(quest => {	
+        state.pastQuests.push(quest);	
+      });
     }
   },
   actions: {
@@ -117,6 +127,11 @@ export default new Vuex.Store({
           url: auth_uri + '/api/quests/past'
         }).then(response => {
           commit('loadPastQuests', response.data);
+          commit('updateUserData', {	
+            packs: state.packs,	
+            points: state.points,	
+            questsCompleted: state.questsCompleted	
+          });
           resolve(response.data.indexes);
         })
       })

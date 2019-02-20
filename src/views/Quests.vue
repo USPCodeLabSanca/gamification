@@ -265,6 +265,7 @@ export default {
           position: 'top',
           closeBtn: 'X'
         });
+        this.closeModal();
       })
       .catch(error => {
         this.closeModal();

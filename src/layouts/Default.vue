@@ -21,7 +21,7 @@
             <li v-if="isUserLogged">
               <i class="material-icons navbar">monetization_on</i>
               {{points}} {{windowWidth > 360 ? 'Pontos' : ''}}
-              <q-progress :percentage="points" color="dark"/>
+              <q-progress :percentage="pointCalculator" color="dark"/>
             </li>
             <li v-if="isUserLogged">
               <router-link to=/packs>
@@ -163,12 +163,17 @@
       showLeft: false,
       windowWidth: 0
     }),
-    computed: mapGetters([
+    computed: {
+      ...mapGetters([
       'isUserLogged',
       'cards',
       'points',
       'packs'
-    ]),
+      ]),
+      pointCalculator: function() {
+      return Math.floor(this.points/12)
+      }
+    },
     created() {
       window.addEventListener('resize', this.handleResize);
       this.handleResize();
