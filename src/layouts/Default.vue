@@ -49,7 +49,7 @@
             <q-item-side icon="person_add" />
             <q-item-main label="Cadastrar" />
           </q-item>
-          <q-item v-if="isUserLogged" @click.native="callLoadQuests()" to="/quests">
+          <q-item v-if="isUserLogged" to="/quests">
             <q-item-side icon="explore" />
             <q-item-main label="Missões" />
           </q-item>
@@ -182,17 +182,12 @@
       window.removeEventListener('resize', this.handleResize);
     },
     methods: {
-      ...mapActions(['loadPastQuests', 'loadActiveQuests']),
       handleResize() {
         this.windowWidth = window.innerWidth;
       },
       logout() {
         store.commit('logout');
         Router.push({name: 'Home'});
-      },
-      callLoadQuests() {
-        this.loadActiveQuests();
-        this.loadPastQuests();
       }
     }
   };
