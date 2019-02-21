@@ -21,7 +21,7 @@
             <li v-if="isUserLogged">
               <i class="material-icons navbar">monetization_on</i>
               {{points}} {{windowWidth > 360 ? 'Pontos' : ''}}
-              <q-progress :percentage="points" color="dark"/>
+              <q-progress :percentage="pointCalculator" color="dark"/>
             </li>
             <li v-if="isUserLogged">
               <router-link to=/packs>
@@ -49,7 +49,7 @@
             <q-item-side icon="person_add" />
             <q-item-main label="Cadastrar" />
           </q-item>
-          <q-item v-if="isUserLogged" @click.native="callLoadQuests()" to="/quests">
+          <q-item v-if="isUserLogged" to="/quests">
             <q-item-side icon="explore" />
             <q-item-main label="Missões" />
           </q-item>
@@ -163,12 +163,17 @@
       showLeft: false,
       windowWidth: 0
     }),
-    computed: mapGetters([
+    computed: {
+      ...mapGetters([
       'isUserLogged',
       'cards',
       'points',
       'packs'
-    ]),
+      ]),
+      pointCalculator: function() {
+        return Math.round(this.points/12);
+      }
+    },
     created() {
       window.addEventListener('resize', this.handleResize);
       this.handleResize();
@@ -177,17 +182,12 @@
       window.removeEventListener('resize', this.handleResize);
     },
     methods: {
-      ...mapActions(['loadPastQuests', 'loadActiveQuests']),
       handleResize() {
         this.windowWidth = window.innerWidth;
       },
       logout() {
         store.commit('logout');
         Router.push({name: 'Home'});
-      },
-      callLoadQuests() {
-        this.loadActiveQuests();
-        this.loadPastQuests();
       }
     }
   };

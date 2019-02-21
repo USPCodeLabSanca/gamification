@@ -21,7 +21,7 @@
         </q-tab-pane>
         <q-tab-pane class="tab-senha" name="tab-senha">
           <p>Código secreto:</p>
-          <q-input v-model="inserted" type="text"/>
+          <q-input v-model="inserted" type="text" autofocus/>
           <q-btn
               color="primary"
               @click="onDecode(inserted)"
@@ -214,7 +214,7 @@ i{
 
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import checkedIcon from '../assets/checked.png';
 import cancelIcon from '../assets/cancel.png';
 import moment from 'moment';
@@ -232,11 +232,13 @@ export default {
   mounted() {
     if (!this.isUserLogged) {
       Router.push({name: 'Home'});
+    } else {
+      this.callLoadQuests();
     }
   },
   methods: {
+    ...mapActions(['loadPastQuests', 'loadActiveQuests']),
     formatDate: function(date) {
-      
       return moment(date).utc().format("DD-MM-YYYY HH:mm");
     },
     getQuestFinishedLabel(quest, questsCompleted) {
@@ -265,6 +267,7 @@ export default {
           position: 'top',
           closeBtn: 'X'
         });
+        this.closeModal();
       })
       .catch(error => {
         this.closeModal();
@@ -286,6 +289,10 @@ export default {
       this.qrFound = false;
       this.pauseQR = false;
       this.inserted = '';
+    },
+    callLoadQuests() {
+      this.loadActiveQuests();
+      this.loadPastQuests();
     }
   },
   components: {

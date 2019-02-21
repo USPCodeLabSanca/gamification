@@ -1,7 +1,7 @@
 <template>
   <q-page padding class="docs-input justify-center">
     <h2>Cadastro</h2>
-    <q-input v-model="data.name" float-label="Nome" ref="name"/>
+    <q-input v-model="data.name" float-label="Nome" ref="name" autofocus/>
     <q-input v-model="data.email" type="email" float-label="E-mail" ref="email"/>
     <q-input v-model="data.nusp" type="number" float-label="Número USP" ref="nusp"/>
     <q-input v-model="data.password" type="password" float-label="Senha" ref="password"/>

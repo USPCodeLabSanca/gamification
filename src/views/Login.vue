@@ -1,12 +1,12 @@
 <template>
   <q-page padding class="docs-input justify-center">
     <h2>Login</h2>
-    <q-input v-model="credentials.email" type="email" float-label="email" ref="email"/>
+    <q-input v-model="credentials.email" type="email" float-label="email" ref="email" autofocus/>
     <q-input v-model="credentials.password" type="password" float-label="senha" ref="password"/>
     <q-btn color="primary" label="Entrar" @click="submit()"/>
     
     <q-btn style="float: left" color="white" text-color="black" label="Cadastre-se" @click="register()"/>
-    <!-- <q-btn style="float: left" text-color="black" label="Esqueci minha senha" @click="forgot()"/> -->
+    <q-btn style="float: left" text-color="black" label="Esqueci minha senha" @click="forgot()"/>
     
   </q-page>
 </template>
