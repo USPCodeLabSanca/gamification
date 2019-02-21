@@ -239,7 +239,7 @@ export default {
   methods: {
     ...mapActions(['loadPastQuests', 'loadActiveQuests']),
     formatDate: function(date) {
-      return moment(date).utc().format("DD-MM-YYYY HH:mm");
+      return moment(date).utc().subtract({ hours: +3}).format("DD-MM-YYYY HH:mm");
     },
     getQuestFinishedLabel(quest, questsCompleted) {
       return questsCompleted.some(questCompleted => questCompleted === quest.questId);
